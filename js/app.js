@@ -11,7 +11,7 @@ const nationalNewsYouTubeChannelIds = ['UCBi2mrWuNuyYy4gbM6fU18Q', 'UCeY0bbntWzz
 
 // get area reports
 const areaReports = [
-  {
+  /*{
     dateReported: '09/01/2017',
     report: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu mi sit amet tellus tempus sagittis. Donec eget turpis aliquam, tincidunt tellus imperdiet, auctor quam.',
     reportedBy: 'Jane Doe'
@@ -25,7 +25,7 @@ const areaReports = [
     dateReported: '08/31/2017',
     report: 'Curabitur posuere nunc molestie magna fermentum venenatis. Sed pulvinar arcu nec neque tristique dictum.',
     reportedBy: 'Joe Bloe'
-  },
+  }*/
 ];
 
 // local help information
@@ -39,7 +39,7 @@ const localHelpInformation = [
     zip:'88888',
     phone:'888.888.8888',
     email:'person@contactme.com',
-    message:'Contact me if you need food.'
+    message:'Contact for food donations'
   },
   {
     type:'center',
@@ -65,9 +65,41 @@ const localHelpInformation = [
   }
 ];
 
+// national organizations
+const nationalOrganizations = [
+  {
+    name:'American Red Cross',
+    logo:'./img/national-organization-logo-redcross.png',
+    link:'https://www.redcross.org/donate/donation'
+  },
+  {
+    name:'The Salvation Army',
+    logo:'./img/national-organization-logo-salvation-army.png',
+    link:'https://give.salvationarmyusa.org/site/Donation2?df_id=27651&amp;mfc_pref=T&amp;27651.donation=form1'
+  },
+  {
+    name:'Catholic Charities USA',
+    logo:'./img/national-organization-logo-catholic-charities-usa.png.',
+    link:'https://app.mobilecause.com/public/peer_fundraisers/375237/peer_fundraiser_donations/new'
+  },
+  {
+    name:'The Humane Society',
+    logo:'./img/national-organization-logo-humane-society.svg',
+    link:'https://secure.humanesociety.org/site/Donation2?df_id=23944&amp;23944.donation=form1&amp;s_src=ad_bing_search_brand_hurricaneharvey_082917%7Cweb_hpbb_083017_d_id93480558'
+  },
+  {
+    name:'Donors Choose',
+    logo:'./img/national-organization-logo-donors-choose.png',
+    link:'https://www.donorschoose.org/hurricane-harvey'
+  }
+];
+
 
 // call all function
 function initApp () {
+
+  // set banner
+  setTitles();
 
   // get local videos
   localNewsYouTubeChannelIds.map( (source, index) => {
@@ -98,7 +130,17 @@ function initApp () {
   getLocalHelpInfo();
 
   // get national organizations
+  getNationalOrganizations();
 
+}
+
+// set disaster name in banner
+function setTitles () {
+
+  const completeTitle = `${disaster} News Center`;
+
+  $('title').html(completeTitle);
+  $('h1 header').html(completeTitle);
 
 }
 
@@ -125,18 +167,36 @@ function getAreaReports () {
   // start fresh
   $('.js-area-reports').empty();
 
-  // loop thru reports
-  areaReports.map( report => {
+  // if no reports
+  if (areaReports.length === 0) {
 
-    const template = `
-      <div class="date">${report.dateReported}</div>
-      <div class="report">${report.report}</div>
-      <div class="reporter">- ${report.reportedBy}</div>
-    `;
+    // enter message asking for reports
+    $('.js-area-reports').html(`
+      <p>
+        If you are within the area of ${disaster} and are able to safely do so,
+        please <a href="#" class="js-submit-report-btn"><strong>submit a report</strong></a> to let us
+        know what is going on and how we can help.
+      </p><br>
+    `);
 
-    $('.js-area-reports').append(template);
+  }
 
-  });
+  else {
+
+    // loop thru reports
+    areaReports.map( report => {
+
+      const template = `
+        <div class="date">${report.dateReported}</div>
+        <div class="report">${report.report}</div>
+        <div class="reporter">- ${report.reportedBy}</div>
+      `;
+
+      $('.js-area-reports').append(template);
+
+    });
+
+  }
 
 }
 
@@ -157,12 +217,35 @@ function getLocalHelpInfo () {
         ${contact.address}<br>
         ${contact.city}, ${contact.state} ${contact.zip}
       </div>
-      <div class="phone">Phone: ${contact.phone}</div>
-      <div class="phone">Email: ${contact.email}</div>
-      <div class="phone">Message: ${contact.message}</div>
+      <div class="phone"><a href="tel:${contact.phone}">${contact.phone}</a></div>
+      <div class="email"><a href="mailto:${contact.email}">${contact.email}</a></div>
+      <div class="message"><em>Message:</em> ${contact.message}</div>
     `;
 
     $('.js-local-help').append(template);
+
+  });
+
+}
+
+// get national organization info
+function getNationalOrganizations () {
+
+  // call to service
+
+  // start fresh
+  $('.js-national-help').empty();
+
+  // loop thru reports
+  nationalOrganizations.map( org => {
+
+    const template = `
+      <a href="${org.link}" target="_blank">
+        <div class="logo"><img src="${org.logo}" alt="${org.name} Logo"></div>
+      </a>
+    `;
+
+    $('.js-national-help').append(template);
 
   });
 

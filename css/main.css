@@ -114,7 +114,7 @@
   min-height:100px;
 }
 .video-list li .description {
-  font-size:12px;
+  font-size:14px;
 }
 .video-list li .source {
   clear: both;
@@ -134,11 +134,31 @@
   padding:0;
 }
 .help-info button {
-  width:initial;
+  width:100%;
   margin-top:15px;
   font-size: 16px;
   box-shadow: none;
   background: #00b9d7;
+}
+.help-block {
+  margin-top:35px;
+}
+.help-block .name {
+  margin-bottom:10px;
+  font-weight: bold;
+}
+.help-block .address {
+  margin-bottom:10px;
+}
+.help-block .email {
+  margin-bottom:10px;
+}
+.help-block .message {
+  margin-bottom:35px;
+}
+.help-block .logo {
+  margin:35px 0;
+  padding:0 25px;
 }
 
 .affected-areas {
@@ -148,6 +168,7 @@
   display: inline-block;
   font-size: 14px;
 }
+
 .map-legend li {
   padding-right:15px;
 }
@@ -208,7 +229,7 @@ footer a {
 
 }
 
-/* tablets */
+/* landscape larger phones */
 @media only screen and (min-width:640px) {
 
   .header {
@@ -237,6 +258,8 @@ footer a {
   }
 
 }
+
+/* tablets */
 @media only screen and (min-width:768px) {
 
   .header {
@@ -264,10 +287,13 @@ footer a {
   .nav li a {
     border:none;
   }
+  .nav li.hide {
+    display: inline-block;
+  }
 
 }
 
-/* desktops */
+/* landscape tablets */
 @media only screen and (min-width:1024px) {
 
   .header {
@@ -295,8 +321,19 @@ footer a {
     padding-left:0;
   }
 
+  .help-block .logo {
+    padding:0 45px;
+  }
+
   footer {
     margin-top: 25px;
   }
+
+}
+
+/* desktops */
+@media only screen and (min-width:1280px) {
+
+  .row {max-width:1280px;}
 
 }
