@@ -51,6 +51,21 @@
     float: right;
   }
 
+  .iframe-container {
+    position:relative;
+    padding-bottom:56.25%;
+    padding-top:35px;
+    height:0;
+    overflow:hidden;
+  }
+  .iframe-container iframe {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+  }
+
 
 /* styles */
 .header {
@@ -88,12 +103,31 @@
   color:#ccc;
 }
 
+.video-player {
+  margin-bottom: 30px;
+}
 .video-list {
   display: inline-block;
   padding:10px 0;
 }
 .video-list li {
   min-height:100px;
+}
+.video-list li .description {
+  font-size:12px;
+}
+.video-list li .source {
+  clear: both;
+  margin-bottom: 25px;
+}
+
+.area-reports .date {
+  font-weight: bold;
+}
+.area-reports .reporter {
+  margin:10px 0 25px 0;
+  text-align: right;
+  font-style: italic;
 }
 
 .help-info .row {
