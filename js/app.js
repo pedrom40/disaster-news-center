@@ -122,6 +122,9 @@ function initApp () {
     getNationalNewsVideoFromSource(source, disaster);
   });
 
+  // listen for preview clicks
+  listenForPreviewClicks();
+
   // get area reports
   getAreaReports();
 
@@ -160,6 +163,44 @@ function listenForMenuToggle () {
     $('.js-nav-toggle i').toggleClass('fa-bars fa-times');
 
   });
+
+}
+
+// process thumbnail clicks, set as main video
+function listenForPreviewClicks () {
+
+  $('.video-list').click( event => {
+    event.preventDefault();
+
+    // get a tag info
+    const anchorClicked = $(event.target).closest('a');
+
+    // call video api
+    callYouTubeVideoAPI(anchorClicked[0].attributes.videoID.value, updateMainVideoFromAnchorClick);
+
+  });
+
+}
+
+// reset main video content from anchor link
+function updateMainVideoFromAnchorClick (videoObj) {
+
+  // reset html to start fresh
+  $('.js-main-video').empty();
+
+  // set template
+  const template = `
+    <div class="iframe-container">
+      <iframe width="320" height="180" title="Featured Video" src="https://www.youtube.com/embed/${videoObj.items[0].id}" frameborder="0" class="js-main-video-iframe" allowfullscreen></iframe>
+    </div>
+    <h3>${videoObj.items[0].snippet.title}</h3>
+    <p>${videoObj.items[0].snippet.description}</p>
+  `;
+
+  $('.js-main-video').append(template);
+
+  // scroll to top of page
+  $(window).scrollTop(0);
 
 }
 
@@ -476,7 +517,28 @@ function callYouTubeSearchAPI (channelID, q, callback) {
     dataType: 'json',
     type: 'GET',
     success: callback,
-    fail: callback
+    fail: showAjaxError
+  };
+
+  $.ajax(settings);
+
+}
+
+// calls youtube video search by video ID
+function callYouTubeVideoAPI (videoID, callback) {
+
+  // set API call parameters
+  const settings = {
+    url: 'https://www.googleapis.com/youtube/v3/videos',
+    data: {
+      part: 'snippet,contentDetails,statistics',
+      key: 'AIzaSyBAPx_IKzkO0KLZ9TOGGcLTUixNZmFRiX4',
+      id: videoID
+    },
+    dataType: 'json',
+    type: 'GET',
+    success: callback,
+    fail: showAjaxError
   };
 
   $.ajax(settings);
@@ -484,9 +546,9 @@ function callYouTubeSearchAPI (channelID, q, callback) {
 }
 
 // show ajax error
-function showAjaxError (element, errorMsg) {
+function showAjaxError (data) {
 
-  $(element).html(`Search Failed: ${errorMsg}`);
+  console.log(data);
 
 }
 
