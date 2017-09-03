@@ -28,6 +28,35 @@ const areaReports = [
   }*/
 ];
 
+// affected areas
+const afffectedAreas = [
+  {
+    location:'Corpus Christi, TX',
+    estPopulation:300000,
+    center:{lat:27.8003, lng:-97.3956}
+  },
+  {
+    location:'Rockport, TX',
+    estPopulation:150000,
+    center:{lat:28.0206, lng:-97.0544}
+  },
+  {
+    location:'Aransas Pass, TX',
+    estPopulation:80000,
+    center:{lat:27.9095, lng:-97.15}
+  },
+  {
+    location:'Port Aransas, TX',
+    estPopulation:80000,
+    center:{lat:27.8332, lng:-97.0618}
+  },
+  {
+    location:'Houston, TX',
+    estPopulation:1000000,
+    center:{lat:29.7589, lng:-95.3677}
+  }
+];
+
 // local help information
 const localHelpInformation = [
   {
@@ -128,10 +157,13 @@ function initApp () {
   // get area reports
   getAreaReports();
 
-  // get social media feed
-
   // load map
   loadMap();
+
+  // load affected areas list
+  loadAffectedAreasList();
+
+  // get social media feed
 
   // get local help info
   getLocalHelpInfo();
@@ -441,59 +473,38 @@ function listNationalVideos (data) {
 // load map
 function loadMap () {
 
-  // init map
-  mapboxgl.accessToken = 'pk.eyJ1IjoicGVkcm9tNDAiLCJhIjoiY2o3M3dzMnJlMGs0eDJxcXhydWt4dHp1biJ9.FqOCLgRnuK09MLB9GECjSA';
-    var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/light-v9',
-    center: [-97.0510329439435, 28.0462271591852], // starting position
-    zoom: 9
+  const map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 5,
+    center: {lat:28.0206, lng:-97.0544}
   });
 
-  // load zones
-  loadMapZones(map);
+  loadMarkers(map);
 
 }
 
-// load map zones
-function loadMapZones (map) {
+// load map markers
+function loadMarkers (map) {
 
-  // call service to get zones
-  const dangerZones = [
-    {
+  afffectedAreas.map( area => {
 
-    }
-  ];
-
-  // draw zones
-  map.on('load', function () {
-
-    map.addLayer({
-      'id': 'maine',
-      'type': 'fill',
-      'source': {
-        'type': 'geojson',
-        'data': {
-          'type': 'Feature',
-          'geometry': {
-            'type': 'Polygon',
-            'coordinates': [
-              [
-                [-97.36348, 27.647911],
-                [-97.37962, 27.666773],
-                [-97.35618, 27.65458],
-                [-97.338646, 27.666817]
-              ]
-            ]
-          }
-        }
-      },
-      'layout': {},
-      'paint': {
-        'fill-color': '#088',
-        'fill-opacity': 0.8
-      }
+    let marker = new google.maps.Marker({
+      position: area.center,
+      map: map,
+      title:area.location
     });
+
+  });
+
+}
+
+// load affected areas list
+function loadAffectedAreasList () {
+
+  $('.area-list').empty();
+
+  afffectedAreas.map( area => {
+
+    $('.area-list').append(`<li>${area.location} &gt; <em>${area.estPopulation}</em></li>`);
 
   });
 
