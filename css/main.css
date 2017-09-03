@@ -1,96 +1,65 @@
 /* tag overrides */
-  body {
-    font-family:"Roboto", sans-serif;
-    color:#252525;
-  }
-
-  img {
-    width:100%;
-  }
-
-  button {
-    width:100%;
-    margin-bottom:15px;
-    padding:8px 12px;
-    color:black;
-    font-size: 12px;
-    font-weight: bold;
-    border:none;
-    box-shadow:0px 0px 5px #999;
-    background:white;
-  }
-  button:hover {
-    cursor:pointer;
-    background:#ccc;
-  }
-
+body {
+  font-family:"Roboto", sans-serif;
+  color:#252525;
+}
 
 /* reusables */
-  .hide {
-    display: none;
-  }
+.hide {
+  display: none;
+}
 
-  .unstyle-list {
-    list-style:none;
-    margin:0;
-    padding:0;
-  }
-  .unstyle-list li {
-    display: inline-block;
-    vertical-align: middle;
-  }
+.unstyle-list {
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+.unstyle-list li {
+  display: inline-block;
+  vertical-align: middle;
+}
 
-  li .left-side, li .right-side {
-    width:46%;
-    vertical-align: middle;
-  }
-  li .left-side {
-    float: left;
-  }
-  li .right-side {
-    float: right;
-  }
+li .left-side, li .right-side {
+  width:46%;
+  vertical-align: middle;
+}
+li .left-side {
+  float: left;
+}
+li .right-side {
+  float: right;
+}
 
-  .iframe-container {
-    position:relative;
-    padding-bottom:56.25%;
-    padding-top:35px;
-    height:0;
-    overflow:hidden;
-  }
-  .iframe-container iframe {
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-  }
+.iframe-container {
+  position:relative;
+  padding-bottom:56.25%;
+  padding-top:35px;
+  height:0;
+  overflow:hidden;
+}
+.iframe-container iframe {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+}
 
 
 /* styles */
-.header {
-  padding:40px 25px;
-  background:#00b9d7;
-}
-.header h1 {
-  margin:0 0 35px 0;
-}
-.header button:last-child {
-  margin-bottom:0;
-}
-
-.menu-bar {
-  display:inline-block;
-  padding:20px 0;
+.nav-bar {
+  padding:10px 0;
   background:black;
 }
-
+nav {
+  color:white;
+}
+.nav {
+  padding-bottom:10px;
+}
 .nav li {
   width:100%;
   padding:10px 20px;
-}
-.nav li.hide {
-  display: none;
 }
 .nav li a {
   display: block;
@@ -103,8 +72,12 @@
   color:#ccc;
 }
 
+.header {
+  background:#00b9d7;
+}
+
 .video-player {
-  margin-bottom: 30px;
+  margin-bottom:30px;
 }
 .video-list {
   display: inline-block;
@@ -130,15 +103,11 @@
   font-style: italic;
 }
 
+.help-info {
+  margin-top:90px;
+}
 .help-info .row {
   padding:0;
-}
-.help-info button {
-  width:100%;
-  margin-top:15px;
-  font-size: 16px;
-  box-shadow: none;
-  background: #00b9d7;
 }
 .help-block {
   margin-top:35px;
@@ -158,7 +127,12 @@
 }
 .help-block .logo {
   margin:35px 0;
-  padding:0 25px;
+  padding-bottom: 25px;
+  text-align:center;
+  border-bottom:dotted 1px #ccc;
+}
+.help-block a:last-child .logo {
+  border:none;
 }
 
 .affected-areas {
@@ -169,8 +143,24 @@
   font-size: 14px;
 }
 
+.map-container, #map {
+  width:100%;
+  height:300px;
+  margin-bottom:15px;
+}
 .map-legend li {
   padding-right:15px;
+  font-size:12px;
+}
+.legend-color-box {
+  width:100%;
+  height:30px;
+}
+.danger-zone {
+  background:red;
+}
+.power-outage {
+  background:orange;
 }
 
 .social-media-posts li {
@@ -198,18 +188,6 @@ footer a {
 /* landscape small phone */
 @media only screen and (min-width: 560px) {
 
-
-  .header h1 {
-    text-align: center;
-  }
-  .header nav {
-    text-align: center;
-  }
-  .header button {
-    width: 200px;
-    margin: 0 10px;
-  }
-
   .nav li {
     display: inline-block;
     width: 255px;
@@ -232,17 +210,6 @@ footer a {
 /* landscape larger phones */
 @media only screen and (min-width:640px) {
 
-  .header {
-    padding: 25px 25px 15px 25px;
-  }
-  .header nav {
-    margin-top: -15px;
-  }
-  .header button {
-    width:240px;
-    margin: 10px;
-  }
-
   .nav li {
     width: 295px;
   }
@@ -262,21 +229,11 @@ footer a {
 /* tablets */
 @media only screen and (min-width:768px) {
 
-  .header {
-    padding: 25px 0 15px 0;
-  }
   .header .col-6 {
     width:50%;
   }
-  .header h1 {
-    margin-bottom: 20px;
-    text-align: left;
-  }
-  .header nav {
-    margin-top: -8px;
-  }
 
-  .menu-bar {
+  .nav-bar {
     width:100%;
     padding: 5px 0 0 0;
   }
@@ -287,9 +244,6 @@ footer a {
   .nav li a {
     border:none;
   }
-  .nav li.hide {
-    display: inline-block;
-  }
 
 }
 
@@ -298,13 +252,6 @@ footer a {
 
   .header {
     padding-top:30px;
-  }
-  .header nav {
-    margin-top: -4px;
-    text-align: right;
-  }
-  .header button {
-    width:initial;
   }
 
   .map-legend {
@@ -315,6 +262,10 @@ footer a {
   }
   .map-legend .right-side {
     width:85%;
+  }
+
+  .help-info {
+    margin-top:70px;
   }
 
   .nav li:first-child {

@@ -79,7 +79,7 @@ const nationalOrganizations = [
   },
   {
     name:'Catholic Charities USA',
-    logo:'./img/national-organization-logo-catholic-charities-usa.png.',
+    logo:'./img/national-organization-logo-catholic-charities-usa.png',
     link:'https://app.mobilecause.com/public/peer_fundraisers/375237/peer_fundraiser_donations/new'
   },
   {
@@ -100,6 +100,9 @@ function initApp () {
 
   // set banner
   setTitles();
+
+  // menu listener
+  listenForMenuToggle();
 
   // get local videos
   localNewsYouTubeChannelIds.map( (source, index) => {
@@ -125,6 +128,7 @@ function initApp () {
   // get social media feed
 
   // load map
+  loadMap();
 
   // get local help info
   getLocalHelpInfo();
@@ -141,6 +145,21 @@ function setTitles () {
 
   $('title').html(completeTitle);
   $('h1 header').html(completeTitle);
+
+}
+
+// handle menu toggle
+function listenForMenuToggle () {
+
+  $('.js-nav-toggle').click( event => {
+
+    // show nav
+    $('.nav').toggle();
+
+    // remove bars
+    $('.js-nav-toggle i').toggleClass('fa-bars fa-times');
+
+  });
 
 }
 
@@ -175,7 +194,7 @@ function getAreaReports () {
       <p>
         If you are within the area of ${disaster} and are able to safely do so,
         please <a href="#" class="js-submit-report-btn"><strong>submit a report</strong></a> to let us
-        know what is going on and how we can help.
+        know what is going on and/or how we can help.
       </p><br>
     `);
 
@@ -378,6 +397,66 @@ function listNationalVideos (data) {
 
 }
 
+// load map
+function loadMap () {
+
+  // init map
+  mapboxgl.accessToken = 'pk.eyJ1IjoicGVkcm9tNDAiLCJhIjoiY2o3M3dzMnJlMGs0eDJxcXhydWt4dHp1biJ9.FqOCLgRnuK09MLB9GECjSA';
+    var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/light-v9',
+    center: [-97.0510329439435, 28.0462271591852], // starting position
+    zoom: 9
+  });
+
+  // load zones
+  loadMapZones(map);
+
+}
+
+// load map zones
+function loadMapZones (map) {
+
+  // call service to get zones
+  const dangerZones = [
+    {
+
+    }
+  ];
+
+  // draw zones
+  map.on('load', function () {
+
+    map.addLayer({
+      'id': 'maine',
+      'type': 'fill',
+      'source': {
+        'type': 'geojson',
+        'data': {
+          'type': 'Feature',
+          'geometry': {
+            'type': 'Polygon',
+            'coordinates': [
+              [
+                [-97.36348, 27.647911],
+                [-97.37962, 27.666773],
+                [-97.35618, 27.65458],
+                [-97.338646, 27.666817]
+              ]
+            ]
+          }
+        }
+      },
+      'layout': {},
+      'paint': {
+        'fill-color': '#088',
+        'fill-opacity': 0.8
+      }
+    });
+
+  });
+
+}
 
 // calls youtube search API with search term and credentials
 function callYouTubeSearchAPI (channelID, q, callback) {
