@@ -181,8 +181,16 @@ footer {
   color:white;
   background:black;
 }
-footer a {
+.footer-nav {
+  margin-bottom:10px;
+}
+.footer-nav a {
+  padding:0 4px;
+  text-decoration: none;
   color:white;
+}
+.copyright, .copyright a {
+  color:#ccc;
 }
 
 /* landscape small phone */
