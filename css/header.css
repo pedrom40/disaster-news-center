@@ -1,0 +1,12 @@
+.header {
+  background:#00b9d7;
+}
+
+/* tablets */
+@media only screen and (min-width:768px) {
+
+  .header .col-6 {
+    width:50%;
+  }
+
+}

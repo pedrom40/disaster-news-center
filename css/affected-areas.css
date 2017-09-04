@@ -1,0 +1,53 @@
+.affected-areas {
+  margin-bottom: 35px;
+}
+
+.map-container, #map {
+  width:100%;
+  height:300px;
+  margin-bottom:30px;
+}
+
+.help-info {
+  margin-top:50px;
+}
+.help-info .row {
+  padding:0;
+}
+.help-block {
+  margin-top:35px;
+}
+.help-block .name {
+  margin-bottom:10px;
+  font-weight: bold;
+}
+.help-block .address {
+  margin-bottom:10px;
+}
+.help-block .email {
+  margin-bottom:10px;
+}
+.help-block .message {
+  margin-bottom:35px;
+}
+.help-block .logo {
+  margin:35px 0;
+  padding-bottom: 25px;
+  text-align:center;
+  border-bottom:dotted 1px #ccc;
+}
+.help-block a:last-child .logo {
+  border:none;
+}
+
+/* landscape small phone */
+@media only screen and (min-width: 560px) {
+
+  .help-info {
+    padding-bottom: 15px;
+  }
+  .help-info .col-6 {
+    width:50%;
+  }
+
+}

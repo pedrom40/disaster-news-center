@@ -1,0 +1,61 @@
+.nav-bar {
+  padding:10px 0;
+  text-align:right;
+  background:black;
+}
+nav {
+  color:white;
+}
+.nav {
+  display: none;
+  padding-bottom:10px;
+}
+.nav li {
+  width:100%;
+  text-align: left;
+  padding:10px 20px;
+}
+.nav li a {
+  display: block;
+  padding-bottom: 5px;
+  color: white;
+  text-decoration: none;
+  border-bottom: dotted 1px #999;
+}
+.nav li a:hover {
+  color:#ccc;
+}
+
+/* landscape small phone */
+@media only screen and (min-width: 560px) {
+
+  .nav li {
+    display: inline-block;
+    width: 255px;
+  }
+
+}
+
+/* tablets */
+@media only screen and (min-width:768px) {
+
+  .nav-bar {
+    padding-bottom:5px;
+  }
+  .menu-icon {
+    display: none;
+  }
+  .nav {
+    display: block;
+    padding-bottom: 0;
+  }
+  .nav li {
+    padding:0 0 0 16px;
+    width: initial;
+    font-size: 14px;
+  }
+  .nav li a {
+    border:none;
+  }
+
+}

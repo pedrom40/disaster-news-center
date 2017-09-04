@@ -1,0 +1,16 @@
+.social-media-posts li {
+  width:100%;
+  padding:15px;
+}
+.social-media-posts li:nth-child(odd) {
+  background: #ccc;
+}
+.social-media-posts li:nth-child(even) {
+  background: #999;
+}
+.social-media-posts li img {
+  width:100%;
+}
+#twitter-widget-0 {
+  height:2000 !important;
+}

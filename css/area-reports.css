@@ -1,0 +1,17 @@
+.area-reports {
+  margin-bottom:25px;
+  background:#dadada;
+}
+
+.area-reports a {
+  color:black;
+}
+
+.area-reports .date {
+  font-weight:bold;
+}
+.area-reports .reporter {
+  margin:10px 0 25px 0;
+  text-align:right;
+  font-style:italic;
+}

@@ -151,19 +151,20 @@ function initApp () {
     getNationalNewsVideoFromSource(source, disaster);
   });
 
+  // get public uploads
+  getPublicVideos();
+
   // listen for preview clicks
   listenForPreviewClicks();
 
   // get area reports
   getAreaReports();
 
-  // load map
-  loadMap();
-
   // load affected areas list
   loadAffectedAreasList();
 
   // get social media feed
+  loadFacebookData();
 
   // get local help info
   getLocalHelpInfo();
@@ -173,83 +174,6 @@ function initApp () {
 
 }
 
-// set disaster name in banner
-function setTitles () {
-
-  const completeTitle = `${disaster} News Center`;
-
-  $('title').html(completeTitle);
-  $('h1 header').html(completeTitle);
-
-}
-
-// handle menu toggle
-function listenForMenuToggle () {
-
-  $('.js-nav-toggle').click( event => {
-
-    // show nav
-    $('.nav').toggle();
-
-    // remove bars
-    $('.js-nav-toggle i').toggleClass('fa-bars fa-times');
-
-  });
-
-}
-
-// process thumbnail clicks, set as main video
-function listenForPreviewClicks () {
-
-  $('.video-list').click( event => {
-    event.preventDefault();
-
-    // get a tag info
-    const anchorClicked = $(event.target).closest('a');
-
-    // call video api
-    callYouTubeVideoAPI(anchorClicked[0].attributes.videoID.value, updateMainVideoFromAnchorClick);
-
-  });
-
-}
-
-// reset main video content from anchor link
-function updateMainVideoFromAnchorClick (videoObj) {
-
-  // reset html to start fresh
-  $('.js-main-video').empty();
-
-  // set template
-  const template = `
-    <div class="iframe-container">
-      <iframe width="320" height="180" title="Featured Video" src="https://www.youtube.com/embed/${videoObj.items[0].id}" frameborder="0" class="js-main-video-iframe" allowfullscreen></iframe>
-    </div>
-    <h3>${videoObj.items[0].snippet.title}</h3>
-    <p>${videoObj.items[0].snippet.description}</p>
-  `;
-
-  $('.js-main-video').append(template);
-
-  // scroll to top of page
-  $(window).scrollTop(0);
-
-}
-
-// set main video
-function getMainVideo (source, q) {
-  callYouTubeSearchAPI(source, q, setMainVideo);
-}
-
-// get local news source most recent video
-function getLocalNewsVideoFromSource (source, q) {
-  callYouTubeSearchAPI(source, q, listLocalVideos);
-}
-
-// get national news source most recent video
-function getNationalNewsVideoFromSource (source, q) {
-  callYouTubeSearchAPI(source, q, listNationalVideos);
-}
 
 // get area reports
 function getAreaReports () {
@@ -268,7 +192,7 @@ function getAreaReports () {
         If you are within the area of ${disaster} and are able to safely do so,
         please <a href="#" class="js-submit-report-btn"><strong>submit a report</strong></a> to let us
         know what is going on and/or how we can help.
-      </p><br>
+      </p>
     `);
 
   }
@@ -343,159 +267,6 @@ function getNationalOrganizations () {
 
 }
 
-// set main video
-function setMainVideo (data) {
-
-  // reset html
-  $('.js-main-video').empty();
-
-  // set template
-  const template = `
-    <div class="iframe-container">
-      <iframe width="320" height="180" title="Featured Video" src="https://www.youtube.com/embed/${data.items[0].id.videoId}" frameborder="0" class="js-main-video-iframe" allowfullscreen></iframe>
-    </div>
-    <h3>${data.items[0].snippet.title}</h3>
-    <p>${data.items[0].snippet.description}</p>
-  `;
-
-  $('.js-main-video').append(template);
-
-}
-
-// list video from source
-function listLocalVideos (data) {
-
-  // start fresh
-  //$('.js-local-news-video-list').empty();
-
-  // if an error occurred
-  if (typeof textStatus !== 'undefined') {
-
-    // let user know
-    showAjaxError('.js-local-news-video-list', textStatus);
-
-  }
-
-  // if no results returned
-  else if (data.items.length === 0) {
-
-    // let user know
-    $('.js-local-news-video-list').append('Sorry, no results found for your search. Please try again.');
-
-  }
-
-  // if results found
-  else {
-
-    // loop thru data to create most viewed ul li's
-    data.items.map( (item, index) => {
-
-      // setup li html with data
-      const template = `
-        <li>
-          <a href="#" videoID="${item.id.videoId}" class="js-preview-btn">
-            <div class="thumb left-side">
-              <img src="${item.snippet.thumbnails.default.url}" alt="${item.snippet.title} image">
-            </div>
-            <div class="description right-side">
-              ${trimString(item.snippet.title.toString(), 49)}
-            </div>
-            <div class="source">
-              <a href="#">More from ${item.snippet.channelTitle}</a>
-            </div>
-          </a>
-        </li>
-      `;
-
-      // append li to ul
-      $('.js-local-news-video-list').append(template);
-
-    });
-
-  }
-
-}
-
-// list video from source
-function listNationalVideos (data) {
-
-  // start fresh
-  //$('.js-national-news-video-list').empty();
-
-  // if an error occurred
-  if (typeof textStatus !== 'undefined') {
-
-    // let user know
-    showAjaxError('.js-national-news-video-list', textStatus);
-
-  }
-
-  // if no results returned
-  else if (data.items.length === 0) {
-
-    // let user know
-    $('.js-national-news-video-list').append('Sorry, no results found for your search. Please try again.');
-
-  }
-
-  // if results found
-  else {
-
-    // loop thru data to create most viewed ul li's
-    data.items.map( (item, index) => {
-
-      // setup li html with data
-      const template = `
-        <li>
-          <a href="#" videoID="${item.id.videoId}" class="js-preview-btn">
-            <div class="thumb left-side">
-              <img src="${item.snippet.thumbnails.default.url}" alt="${item.snippet.title} image">
-            </div>
-            <div class="description right-side">
-              ${trimString(item.snippet.title.toString(), 49)}
-            </div>
-            <div class="source">
-              <a href="#">More from ${item.snippet.channelTitle}</a>
-            </div>
-          </a>
-        </li>
-      `;
-
-      // append li to ul
-      $('.js-national-news-video-list').append(template);
-
-    });
-
-  }
-
-}
-
-// load map
-function loadMap () {
-
-  const map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 5,
-    center: {lat:28.0206, lng:-97.0544}
-  });
-
-  loadMarkers(map);
-
-}
-
-// load map markers
-function loadMarkers (map) {
-
-  afffectedAreas.map( area => {
-
-    let marker = new google.maps.Marker({
-      position: area.center,
-      map: map,
-      title:area.location
-    });
-
-  });
-
-}
 
 // load affected areas list
 function loadAffectedAreasList () {
@@ -510,49 +281,28 @@ function loadAffectedAreasList () {
 
 }
 
-// calls youtube search API with search term and credentials
-function callYouTubeSearchAPI (channelID, q, callback) {
+// set disaster name in banner
+function setTitles () {
 
-  // set API call parameters
-  const settings = {
-    url: 'https://www.googleapis.com/youtube/v3/search/',
-    data: {
-      part: 'snippet',
-      key: 'AIzaSyBAPx_IKzkO0KLZ9TOGGcLTUixNZmFRiX4',
-      channelId: channelID,
-      q: q,
-      type: 'video',
-      order: 'date',
-      maxResults: 1
-    },
-    dataType: 'json',
-    type: 'GET',
-    success: callback,
-    fail: showAjaxError
-  };
+  const completeTitle = `${disaster} News Center`;
 
-  $.ajax(settings);
+  $('title').html(completeTitle);
+  $('h1 header').html(completeTitle);
 
 }
 
-// calls youtube video search by video ID
-function callYouTubeVideoAPI (videoID, callback) {
+// handle menu toggle
+function listenForMenuToggle () {
 
-  // set API call parameters
-  const settings = {
-    url: 'https://www.googleapis.com/youtube/v3/videos',
-    data: {
-      part: 'snippet,contentDetails,statistics',
-      key: 'AIzaSyBAPx_IKzkO0KLZ9TOGGcLTUixNZmFRiX4',
-      id: videoID
-    },
-    dataType: 'json',
-    type: 'GET',
-    success: callback,
-    fail: showAjaxError
-  };
+  $('.js-nav-toggle').click( event => {
 
-  $.ajax(settings);
+    // show nav
+    $('.nav').toggle();
+
+    // remove bars
+    $('.js-nav-toggle i').toggleClass('fa-bars fa-times');
+
+  });
 
 }
 
@@ -561,11 +311,6 @@ function showAjaxError (data) {
 
   console.log(data);
 
-}
-
-// trim the video description for preview lists
-function trimString (str, trimAt) {
-  return `${str.substring(0, trimAt)}...`;
 }
 
 $(initApp)
