@@ -1,3 +1,9 @@
+.area-information {
+  margin-top:25px;
+  padding-top:25px;
+  border-top:dotted 1px #ccc;
+}
+
 .affected-areas {
   margin-bottom: 35px;
 }
@@ -8,12 +14,6 @@
   margin-bottom:30px;
 }
 
-.help-info {
-  margin-top:50px;
-}
-.help-info .row {
-  padding:0;
-}
 .help-block {
   margin-top:35px;
 }

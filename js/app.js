@@ -4,52 +4,7 @@
 let disasterInfo = [];
 let disasterID = 0;
 let disasterName = '';
-
 let map;
-
-// local help information
-const localHelpInformation = [
-  {
-    type:'person',
-    name:'Jack Dawson',
-    address:'1234 Main st.',
-    city:'Rockport',
-    state:'TX',
-    zip:'88888',
-    phone:'888.888.8888',
-    email:'person@contactme.com',
-    message:'Contact for food donations'
-  }
-];
-
-// national organizations
-const nationalOrganizations = [
-  {
-    name:'',
-    logo:'./img/',
-    link:''
-  },
-  {
-    name:'',
-    logo:'./img/',
-    link:''
-  },
-  {
-    name:'',
-    logo:'./img/',
-    link:''
-  },
-  {
-    name:'',
-    logo:'./img/',
-    link:''
-  },
-  {
-    name:'',
-    logo:'./img/',
-    link:''
-  }
-];
 
 
 // call all function
@@ -159,13 +114,22 @@ function getAffectedAreas () {
 }
 function listAffectedAreasList (data) {
 
+  // start with empty list
   $('.area-list').empty();
+
+  // var to calculate total population
+  let totalPop = 0;
 
   data.map( area => {
 
-    $('.area-list').append(`<li>${area[0]} &gt; <em>${area[1]}</em></li>`);
+    $('.area-list').append(`<li>${area[0]}</li>`);
+
+    totalPop += area[1];
 
   });
+
+  // update populate count
+  $('.js-potential-population-impacted').html(`<em>Potential Population Impact:</em> ${totalPop}`);
 
 }
 

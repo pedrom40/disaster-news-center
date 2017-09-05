@@ -79,7 +79,7 @@
     <cfargument name="disasterID" type="numeric" required="yes">
 
     <cfquery name="area_reports" datasource="#getDS()#">
-      SELECT date_reported, report, reported_by
+      SELECT date_reported, report, reported_by, report_location
       FROM area_reports
       WHERE disaster_id = <cfqueryparam cfsqltype="cf_sql_integer" maxLength="10" value="#arguments.disasterID#">
     </cfquery>
@@ -89,7 +89,8 @@
     <cfoutput query="area_reports">
       <cfset areaReports[#currentrow#][1] = #area_reports.date_reported#>
       <cfset areaReports[#currentrow#][2] = #area_reports.report#>
-      <cfset areaReports[#currentrow#][2] = #area_reports.reported_by#>
+      <cfset areaReports[#currentrow#][3] = #area_reports.reported_by#>
+      <cfset areaReports[#currentrow#][4] = #area_reports.report_location#>
     </cfoutput>
 
     <cfreturn #serializeJSON(areaReports)#>
