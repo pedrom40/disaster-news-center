@@ -1,3 +1,51 @@
+// get local youtube channel ids
+function getLocalNewsYouTubeChannels () {
+
+  let qData = {
+    method: 'getLocalYouTubeChannelIds',
+    disasterID: disasterID
+  }
+  callDisasterService(qData, getLocalVideos);
+
+}
+
+// gets local videos from channel ids
+function getLocalVideos (data) {
+
+  data.map( (source, index) => {
+
+    // take the first local video for featured video
+    if (index === 0) {
+      getMainVideo(source[0], source[1]);
+    }
+
+    // load the local results
+    getLocalNewsVideoFromSource(source[0], source[1]);
+
+  });
+
+}
+
+// get national video channels
+function getNationalVideoChannels () {
+
+  // setup data
+  let qData = {
+    method: 'getNationalYouTubeChannelIds',
+    disasterID: disasterID
+  };
+
+  callDisasterService(qData, getNationalVideos);
+}
+
+function getNationalVideos (data) {
+
+  data.map( source => {
+    getNationalNewsVideoFromSource(source[0], source[1]);
+  });
+
+}
+
 // set main video
 function getMainVideo (source, q) {
   callYouTubeSearchAPI(source, q, 1, setMainVideo);
@@ -14,8 +62,8 @@ function getNationalNewsVideoFromSource (source, q) {
 }
 
 // get regular user uploaded videos
-function getPublicVideos () {
-  callYouTubeSearchAPI('', disaster, 4, listPublicVideos);
+function getPublicVideos (disasterName) {
+  callYouTubeSearchAPI('', disasterName, 4, listPublicVideos);
 }
 
 // set main video
