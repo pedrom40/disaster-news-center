@@ -182,6 +182,77 @@
   </cffunction>
 
 
+  <cffunction name="saveAreaReport" access="remote" returnType="string" returnFormat="json">
+    <cfargument name="disasterId" type="numeric" required="yes">
+    <cfargument name="reportedBy" type="string" required="yes">
+    <cfargument name="reportLocation" type="string" required="yes">
+    <cfargument name="report" type="string" required="yes">
+    <cfargument name="userIpAddress" type="string" required="no">
+    <cfargument name="userCity" type="string" required="no">
+    <cfargument name="userState" type="string" required="no">
+    <cfargument name="userCounty" type="string" required="no">
+    <cfargument name="userCountry" type="string" required="no">
+    <cfargument name="userLat" type="string" required="no">
+    <cfargument name="userLon" type="string" required="no">
+    <cfargument name="userTimezone" type="string" required="no">
+
+    <cfset response = ArrayNew(1)>
+
+    <cftry>
+
+      <cfquery name="insert" datasource="#getDS()#">
+        INSERT INTO area_reports (
+          disaster_id,
+          date_reported,
+          report,
+          reported_by,
+          approved,
+          report_location,
+          user_ip_address,
+          user_city,
+          user_state,
+          user_county,
+          user_country,
+          user_lat,
+          user_lon,
+          user_timezone
+        )
+        VALUES (
+          <cfqueryparam cfsqltype="cf_sql_integer" maxLength="10" value="#arguments.disasterId#">,
+          current_timestamp(),
+          <cfqueryparam cfsqltype="cf_sql_varchar" maxLength="45" value="#arguments.report#">,
+          <cfqueryparam cfsqltype="cf_sql_varchar" maxLength="45" value="#arguments.reportedBy#">,
+          <cfqueryparam cfsqltype="cf_sql_integer" maxLength="10" value="0">,
+          <cfqueryparam cfsqltype="cf_sql_varchar" maxLength="45" value="#arguments.reportLocation#">,
+          <cfqueryparam cfsqltype="cf_sql_varchar" maxLength="45" value="#arguments.userIpAddress#">,
+          <cfqueryparam cfsqltype="cf_sql_varchar" maxLength="45" value="#arguments.userCity#">,
+          <cfqueryparam cfsqltype="cf_sql_varchar" maxLength="45" value="#arguments.userState#">,
+          <cfqueryparam cfsqltype="cf_sql_varchar" maxLength="45" value="#arguments.userCounty#">,
+          <cfqueryparam cfsqltype="cf_sql_varchar" maxLength="45" value="#arguments.userCountry#">,
+          <cfqueryparam cfsqltype="cf_sql_varchar" maxLength="45" value="#arguments.userLat#">,
+          <cfqueryparam cfsqltype="cf_sql_varchar" maxLength="45" value="#arguments.userLon#">,
+          <cfqueryparam cfsqltype="cf_sql_varchar" maxLength="45" value="#arguments.userTimezone#">
+        )
+      </cfquery>
+
+      <cfquery name="newRecord" datasource="#getDS()#">
+        SELECT MAX(id) AS last_record_id
+        FROM area_reports
+      </cfquery>
+
+      <cfset response[1] = 'success'>
+      <cfset response[2] = #newRecord.last_record_id#>
+
+      <cfcatch type="any">
+        <cfset response[1] = 'error'>
+        <cfset response[2] = '#cfcatch.message# #cfcatch.detail#'>
+      </cfcatch>
+
+    </cftry>
+
+    <cfreturn #serializeJSON(response)#>
+  </cffunction>
+
   <cffunction name="getDS" access="private" returnType="string">
     <cfreturn 'dnc'>
   </cffunction>

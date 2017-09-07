@@ -12,10 +12,15 @@ function initApp () {
 
   listenForMenuToggle();
   listenForPreviewClicks();
+  listenForReportSubmissionClicks();
+  listenForCloseReportFormClicks();
+  listenForReportSubmissions();
+  listenForExpandRowClicks();
 
   getDisaster('Hurricane Harvey');
 
   loadFacebookData();
+  loadTwitterWidget();
 
 }
 
@@ -66,24 +71,11 @@ function getAreaReports () {
 }
 function listAreaReports (data) {
 
-  // start fresh
-  $('.js-area-reports').empty();
-
   // if no reports
-  if (data.length === 0) {
+  if (data.length !== 0) {
 
-    // enter message asking for reports
-    $('.js-area-reports').html(`
-      <p>
-        If you are within the area of this event and are able to safely do so,
-        please <a href="#" class="js-submit-report-btn"><strong>submit a report</strong></a> to let us
-        know what is going on and/or how we can help.
-      </p>
-    `);
-
-  }
-
-  else {
+    // start fresh
+    $('.js-area-reports').empty();
 
     // loop thru reports
     data.map( report => {
@@ -209,6 +201,141 @@ function listenForMenuToggle () {
   });
 
 }
+function listenForReportSubmissionClicks () {
+
+  $('.js-submit-report-btn').click( event => {
+
+    // show form
+    $('.area-report-form').toggle();
+
+    // get user info
+    callUserInfoService(fillUserData);
+
+  });
+
+}
+function fillUserData (data) {
+
+  $('#user_ip_address').val(data.ip_address);
+  $('#user_city').val(data.city);
+  $('#user_state').val(data.region);
+  $('#user_county').val(data.county);
+  $('#user_country').val(data.country);
+  $('#user_lat').val(data.latitude);
+  $('#user_lon').val(data.longitude);
+  $('#user_timezone').val(data.timezone);
+
+}
+function listenForCloseReportFormClicks () {
+  $('.js-form-close-btn').click( event => {
+    $('.area-report-form').toggle();
+  });
+}
+function listenForReportSubmissions () {
+  $('#areaReportSubmitBtn').click( event => {
+
+    submitAreaReportData();
+
+  });
+}
+function submitAreaReportData () {
+
+  const formKeys = [
+    [
+      {
+        field:'reported_by',
+        type: 'text',
+        maxLength: 45,
+        required: true
+      }
+    ],
+    [
+      {
+        field:'report_location',
+        type: 'text',
+        maxLength: 45,
+        required: true
+      }
+    ],
+    [
+      {
+        field:'report',
+        type: 'text',
+        maxLength: 225,
+        required: true
+      }
+    ],
+    [
+      {
+        field:'spam_check',
+        type: 'hidden',
+        maxLength: 225,
+        required: true
+      }
+    ]
+  ];
+
+  validateFormData(formKeys);
+
+
+  /*if ($('#spam_check').val() === '') {
+
+    const qData = {
+      method: 'saveAreaReport',
+      disasterID: disasterID,
+      reportedBy: $('#reported_by').val(),
+      reportLocation: $('#report_location').val(),
+      report: $('#report').val(),
+      userIpAddress: $('#user_ip_address').val(),
+      userCity: $('#user_city').val(),
+      userState: $('#user_state').val(),
+      userCounty: $('#user_county').val(),
+      userCountry: $('#user_country').val(),
+      userLat: $('#user_lat').val(),
+      userLon: $('#user_lon').val(),
+      userTimezone: $('#user_timezone').val()
+    };
+
+    callDisasterService(qData, areaReportResponse);
+
+  }
+  else {
+
+    $('.js-area-report-form-response').html(`
+      <p class="error">You're spamming us, stop it!</p>
+    `);
+
+  }*/
+
+}
+function areaReportResponse (data) {
+  console.log(data);
+}
+
+function listenForExpandRowClicks () {
+
+  $('.js-expand-btn').click( event => {
+
+    if (event.target.text.search('Expand') !== -1) {
+
+      $('.social-media-feed').css('height', '2000px');
+      $('#twitter-widget-0').css('height', '2000px');
+
+      $(event.target).html('<i class="fa fa-angle-up" aria-hidden="true"></i> Collapse Row <i class="fa fa-angle-up" aria-hidden="true"></i>');
+
+    }
+    else {
+
+      $('.social-media-feed').css('height', '625px');
+      $('#twitter-widget-0').css('height', '625px');
+
+      $(event.target).html('<i class="fa fa-angle-down" aria-hidden="true"></i> Expand Row <i class="fa fa-angle-down" aria-hidden="true"></i>');
+
+    }
+
+  });
+
+}
 
 function callDisasterService (data, callback) {
 
@@ -221,6 +348,21 @@ function callDisasterService (data, callback) {
     fail: showAjaxError
   }
 
+  $.ajax(settings);
+
+}
+function callUserInfoService (callback) {
+
+  const settings = {
+    url:'//ipfind.co/me',
+    data:{
+      auth:'24b87b97-a038-4552-90ad-a6f02489b5a2'
+    },
+    dataType:'json',
+    type: 'GET',
+    success: callback,
+    fail: showAjaxError
+  }
   $.ajax(settings);
 
 }

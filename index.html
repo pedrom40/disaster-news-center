@@ -14,6 +14,7 @@
   <link href="/css/main.css" rel="stylesheet">
 </head>
 <body>
+
   <main role="main">
 
     <section class="nav-bar">
@@ -25,7 +26,8 @@
               <span class="hide">Open Navigation</span>
             </div>
             <ul class="nav unstyle-list">
-              <li><a href="#">Submit an Area Report</a></li>
+              <li><a href="#affectedAreas">Affected Areas</a></li>
+              <li><a href="#" class="js-submit-report-btn">Submit an Area Report</a></li>
               <li><a href="https://www.aeptexas.com/outages/report/" target="_blank">Report a Power Outage</a></li>
             </ul>
           </nav>
@@ -46,7 +48,40 @@
     <section class="area-reports">
       <div class="row">
         <div class="col-12">
-          <div class="js-area-reports"></div>
+          <div class="js-area-reports">
+            <p>
+              If you are within the area of this event and are able to safely do so,
+              please <a href="#" class="js-submit-report-btn"><strong>submit a report</strong></a> to let us
+              know what is going on and/or how we can help.
+            </p>
+          </div>
+          <form id="submitReportForm" class="area-report-form" role="form" style="display:none;">
+            <a href="#" class="js-form-close-btn"><i class="fa fa-times"></i></a>
+
+            <legend class="hide">Submit an Area Report</legend>
+
+            <label for="reported_by">Your Name:</label>
+            <input type="text" id="reported_by" maxlength="45">
+
+            <label for="report_location">Your Current Location:</label>
+            <input type="text" id="report_location" maxlength="45">
+
+            <label for="report">Report Details</label>
+            <textarea id="report"></textarea>
+
+            <input type="button" id="areaReportSubmitBtn" value="Submit Report">
+
+            <input type="hidden" id="spam_check">
+            <input type="hidden" id="user_ip_address">
+            <input type="hidden" id="user_city">
+            <input type="hidden" id="user_state">
+            <input type="hidden" id="user_county">
+            <input type="hidden" id="user_country">
+            <input type="hidden" id="user_lat">
+            <input type="hidden" id="user_lon">
+            <input type="hidden" id="user_timezone">
+          </form>
+          <div class="js-area-report-form-response"></div>
         </div>
       </div>
     </section>
@@ -56,79 +91,70 @@
         <div class="col-3">
 
           <h2>YouTube</h2>
+          <div class="loader js-youtube-loader"></div>
+          <div class="social-media-feed js-youtube-feed">
+            <div class="video-player js-main-video"></div>
 
-          <div class="video-player js-main-video">
+            <h3>Local News Updates</h3>
+            <ul class="video-list unstyle-list js-local-news-video-list"></ul>
+
+            <h3>National News Updates</h3>
+            <ul class="video-list unstyle-list js-national-news-video-list"></ul>
+
+            <h3>Public Uploads</h3>
+            <ul class="video-list unstyle-list js-public-video-list"></ul>
           </div>
-
-          <h3>Local News Updates</h3>
-          <ul class="video-list unstyle-list js-local-news-video-list">
-          </ul>
-
-          <h3>National News Updates</h3>
-          <ul class="video-list unstyle-list js-national-news-video-list">
-          </ul>
-
-          <h3>Public Uploads</h3>
-          <ul class="video-list unstyle-list js-public-video-list">
-          </ul>
 
         </div>
 
         <div class="col-3">
 
-          <div class="social-media-feed">
-            <h2>Facebook</h2>
-
+          <h2>Facebook</h2>
+          <div class="loader js-facebook-loader"></div>
+          <div class="social-media-feed js-facebook-feed">
             <div class="js-facebook-status">
-              <p>Click the login button to allow your Facebook News Feed to be included on this page.</p>
-              <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
-              <div id="status"></div>
+              <div id="fb-status"></div>
+              <fb:login-button scope="public_profile,email,user_posts" onlogin="checkLoginState();"></fb:login-button>
             </div>
-
-            <!--<ul class="social-media-posts unstyle-list">
-              <li>
-                <img src="http://via.placeholder.com/245x150" alt="Post Thumbnail Placeholder">
-                Post content goes here...
-              </li>
-              <li>
-                Lorem ipsum dolor sit amet, <a href="#">consectetur adipiscing elit.</a> Mauris eu mi sit amet tellus tempus sagittis. #DonecEget #TurpisAliquam
-              </li>
-              <li>
-                <img src="http://via.placeholder.com/245x150" alt="Post Thumbnail Placeholder">
-                Post content goes here...
-              </li>
-              <li>
-                Lorem ipsum dolor sit amet, <a href="#">consectetur adipiscing elit.</a> Mauris eu mi sit amet tellus tempus sagittis. #DonecEget #TurpisAliquam
-              </li>
-            </ul>-->
+            <ul class="social-media-posts unstyle-list js-facebook-list"></ul>
           </div>
 
         </div>
 
         <div class="col-3">
-          <div class="social-media-feed">
-            <h2>Twitter</h2>
-            <a class="twitter-timeline" href="https://twitter.com/hashtag/HurricaneHarvey" data-widget-id="904449485635551232">#HurricaneHarvey Tweets</a>
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-          </div>
+
+          <h2>Twitter</h2>
+          <div class="loader js-twitter-loader"></div>
+          <div class="social-media-feed js-twitter-feed"></div>
+
         </div>
 
         <div class="col-3">
 
-          <div class="affected-areas">
-            <h2>Instagram</h2>
+          <h2>Instagram</h2>
+          <div class="loader js-instagram-loader"></div>
+          <div class="social-media-feed js-instagram-feed"></div>
 
-          </div>
+        </div>
+      </div>
 
+      <div class="row">
+        <div class="col">
+          <a href="#" class="expand-feed-btn js-expand-btn">
+            <i class="fa fa-angle-down" aria-hidden="true"></i>
+            Expand Row
+            <i class="fa fa-angle-down" aria-hidden="true"></i>
+          </a>
         </div>
       </div>
     </section>
 
     <section class="area-information">
       <div class="row">
+
         <div class="col-6">
           <div class="affected-areas">
-            <h2>Affected Areas</h2>
+            <h2>Affected Areas</h2><a name="affectedAreas"></a>
             <div class="map-container">
               <div id="map"></div>
             </div>
@@ -136,18 +162,21 @@
             <p class="js-potential-population-impacted"></p>
           </div>
         </div>
+
         <div class="col-3">
           <h3>Local Contact Information</h3>
           <div class="help-block js-local-help"></div>
         </div>
+
         <div class="col-3">
           <h3 align="center">Donations</h3>
           <div class="help-block js-national-help"></div>
         </div>
+
       </div>
     </section>
 
-    <footer role="site-info">
+    <footer role="contentinfo">
       <div class="footer-nav">
         <a href="#">Suggest a Feature</a> |
         <a href="#">Report a Problem</a> |
@@ -164,6 +193,7 @@
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCPx4l2nrrFHA49MEKHGP4dicCPDfIT7g"></script>
   <script src="/js/youtube.js" type="text/javascript"></script>
   <script src="/js/facebook.js" type="text/javascript"></script>
+  <script src="/js/twitter.js" type="text/javascript"></script>
   <script src="/js/map.js" type="text/javascript"></script>
   <script src="/js/utilities.js" type="text/javascript"></script>
   <script src="/js/app.js" type="text/javascript"></script>

@@ -2,9 +2,22 @@
 body {
   font-family:"Roboto", sans-serif;
   color:#252525;
+  overflow-x:hidden;
 }
 
 /* reusables */
+.success, .error {
+  padding:8px;
+  color:white;
+  font-weight: bold;
+}
+.success {
+  background:green;
+}
+.error {
+  background:red;
+}
+
 .hide {
   display: none;
 }
@@ -15,19 +28,53 @@ body {
   padding:0;
 }
 .unstyle-list li {
-  display: inline-block;
-  vertical-align: middle;
+  display:inline-block;
+  vertical-align:middle;
 }
 
 li .left-side, li .right-side {
   width:46%;
-  vertical-align: middle;
+  vertical-align:middle;
 }
 li .left-side {
-  float: left;
+  float:left;
 }
 li .right-side {
-  float: right;
+  float:right;
+}
+
+.expand-feed-btn {
+  display:block;
+  width:100%;
+  padding-top:10px;
+  text-decoration:none;
+  text-align:center;
+  color:#999;
+}
+.expand-feed-btn:hover {
+  color:#333;
+}
+.expand-feed-btn i {
+  padding:0 15px;
+}
+
+/* CSS loader */
+.loader {
+  margin-top:65px;
+  margin-bottom:560px;
+  margin-left:auto;
+  margin-right:auto;
+	border:5px solid #ebebeb;
+	border-top:5px solid #00b9d7;
+	border-radius:50%;
+	width:50px;
+	height:50px;
+	animation:spin 2s linear infinite;
+}
+
+@keyframes spin {
+	0% {transform:rotate(0deg);}
+	100% {transform:rotate(360deg);}
 }
 
 /* landscape small phone */

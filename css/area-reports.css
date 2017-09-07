@@ -15,3 +15,29 @@
   text-align:right;
   font-style:italic;
 }
+
+.area-report-form {
+  width:350px;
+  margin:25px auto;
+}
+.area-report-form a {
+  display: block;
+  text-align: right;
+}
+.area-report-form label, .area-report-form input, .area-report-form textarea {
+  width:100%;
+}
+.area-report-form label {
+  font-size:12px;
+  margin-bottom: 5px;
+}
+.area-report-form input, .area-report-form textarea {
+  margin-bottom: 15px;
+  padding:8px;
+}
+.area-report-form textarea {
+  height:150px;
+}
+.area-report-form input[type='button'] {
+  margin-bottom:0;
+}

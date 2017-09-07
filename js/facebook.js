@@ -30,17 +30,70 @@ function loadFacebookData () {
 // load facebook user's feed
 function getFacebookUsersFeed (facebookResponse) {
 
-  let facebookUserData = [facebookResponse.authResponse.userID, facebookResponse.authResponse.accessToken]
-  callFacebookGraphAPI(facebookUserData, listFacebookFeed);
+  let facebookUserData = [facebookResponse.authResponse.userID, facebookResponse.authResponse.accessToken];
+  callFacebookGraphApiForTimeline(facebookUserData, listFacebookFeed);
+
+}
+
+// list facebook feed
+function listFacebookFeed (data) {
+
+  data['data'].map( post => {
+
+    // setup post story for display
+    let postStory = '';
+    if ('story' in post) {
+      postStory = `<div class="post-story">${post.story}</div>`;
+    }
+
+    // setup post message for display
+    let postName = '';
+    if ('name' in post) {
+      postName = `<div class="post-name">${post.name}</div>`;
+    }
+
+    // setup post message for display
+    let postMsg = '';
+    if ('message' in post) {
+      postMsg = `<div class="post-message">${post.message}</div>`;
+    }
+
+    // setup post description for display
+    let postDescription = '';
+    if ('description' in post) {
+      postDescription = `<div class="post-description">${post.description}</div>`;
+    }
+
+    // setup post picture for display
+    let postPicture = '';
+    if ('picture' in post) {
+      postPicture = `<div class="post-picture"><img src="${post.picture}"></div>`;
+    }
+
+    // put it all together
+    let template = `
+      <li>
+        <a href="${post.permalink_url}" target="_blank">
+          ${postStory}
+          ${postName}
+          ${postMsg}
+          ${postPicture}
+          ${postDescription}
+        </a>
+      </li>
+    `;
+
+    // send html to page
+    $('.js-facebook-list').append(template);
+
+  });
 
 }
 
 // This is called with the results from from FB.getLoginStatus().
 function statusChangeCallback(response) {
-  //console.log('statusChangeCallback');
-  //console.log(response);
-  // The response object is returned with a status field that lets the app know the current login status of the person.
-  // Full docs on the response object can be found in the documentation for FB.getLoginStatus().
+
+  // if logged in
   if (response.status === 'connected') {
 
     // hide login instructions
@@ -50,10 +103,17 @@ function statusChangeCallback(response) {
     getFacebookUsersFeed(response);
 
   }
+
+  // if not logged in or login failed
   else {
-    // The person is not logged into your app or we are unable to tell.
-    document.getElementById('status').innerHTML = '<p style="color:red">Please log into to view posts.</p>';
+
+    $('#fb-status').html(`<p>Click the login button below to allow your Facebook Timeline to appear here. We will not post to your timeline or change anything, we just display your info.</p>`);
+
   }
+
+  $('.js-facebook-loader').css('display', 'none');
+  $('.social-media-feed.js-facebook-feed').css('display', 'block');
+
 }
 
 // This function is called when someone finishes with the Login Button. See the onlogin handler attached to it in the sample code below.
@@ -63,26 +123,20 @@ function checkLoginState() {
   });
 }
 
-// list facebook feed
-function listFacebookFeed (data) {
-  console.log(data);
-}
-
 // calls youtube video search by video ID
-function callFacebookGraphAPI (facebookUserData, callback) {
-  console.log(facebookUserData);
+function callFacebookGraphApiForTimeline (facebookUserData, callback) {
+
   // set API call parameters
-  const settings = {//
+  const settings = {
     url: `https://graph.facebook.com/${facebookUserData[0]}/feed`,
     data: {
+      fields: 'id,from,name,message,created_time,story,description,link,picture,status_type,object_id,permalink_url',
       access_token: facebookUserData[1]
     },
     dataType: 'json',
     type: 'GET',
     success: callback,
-    fail: function(data){
-      console.log(data);
-    }
+    fail: showAjaxError
   };
 
   $.ajax(settings);

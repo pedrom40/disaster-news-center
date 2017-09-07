@@ -83,6 +83,9 @@ function setMainVideo (data) {
 
   $('.js-main-video').append(template);
 
+  $('.js-youtube-loader').css('display', 'none');
+  $('.social-media-feed.js-youtube-feed').css('display', 'block');
+
 }
 
 
