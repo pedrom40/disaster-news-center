@@ -16,11 +16,13 @@ function initApp () {
   listenForCloseReportFormClicks();
   listenForReportSubmissions();
   listenForExpandRowClicks();
+  listenForInstagramClick();
 
   getDisaster('Hurricane Harvey');
 
   loadFacebookData();
   loadTwitterWidget();
+  loadInstagramContent();
 
 }
 

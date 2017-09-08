@@ -4,6 +4,9 @@ body {
   color:#252525;
   overflow-x:hidden;
 }
+button {
+  cursor: pointer;
+}
 
 /* reusables */
 .success, .error {
