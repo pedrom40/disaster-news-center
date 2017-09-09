@@ -66,11 +66,16 @@ function listInstagramContent (data) {
 
   data['data'].map( post => {
 
+    let postCaption = '';
+    if (post.caption !== null) {
+      postCaption = post.caption.text;
+    }
+
     const template = `
       <li>
         <a href="${post.link}" target="_blank">
           <img src="${post.images.low_resolution.url}">
-          <div class="post-story">${post.caption.text}</div>
+          <div class="post-story">${postCaption}</div>
         </a>
       </li>
     `;

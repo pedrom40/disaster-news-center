@@ -54,11 +54,14 @@
               please <a href="#" class="js-submit-report-btn"><strong>submit a report</strong></a> to let us
               know what is going on and/or how we can help.
             </p>
+            <div class="js-area-report-form-response"></div>
           </div>
           <form id="submitReportForm" class="area-report-form" role="form" style="display:none;">
             <a href="#" class="js-form-close-btn"><i class="fa fa-times"></i></a>
 
             <legend class="hide">Submit an Area Report</legend>
+
+            <ul class="areaReportErrorMsg hide error"></ul>
 
             <label for="reported_by">Your Name:</label>
             <input type="text" id="reported_by" maxlength="45">
@@ -67,7 +70,7 @@
             <input type="text" id="report_location" maxlength="45">
 
             <label for="report">Report Details</label>
-            <textarea id="report"></textarea>
+            <textarea id="report" maxlength="225"></textarea>
 
             <input type="button" id="areaReportSubmitBtn" value="Submit Report">
 
@@ -81,7 +84,6 @@
             <input type="hidden" id="user_lon">
             <input type="hidden" id="user_timezone">
           </form>
-          <div class="js-area-report-form-response"></div>
         </div>
       </div>
     </section>

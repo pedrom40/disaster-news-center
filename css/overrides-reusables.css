@@ -4,12 +4,13 @@ body {
   color:#252525;
   overflow-x:hidden;
 }
-button {
+button, input[type='button'] {
   cursor: pointer;
 }
 
 /* reusables */
 .success, .error {
+  margin-bottom:15px;
   padding:8px;
   color:white;
   font-weight: bold;
@@ -19,6 +20,9 @@ button {
 }
 .error {
   background:red;
+}
+.error-field {
+  border:solid 2px #ff0000;
 }
 
 .hide {

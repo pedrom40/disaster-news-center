@@ -82,6 +82,7 @@
       SELECT date_reported, report, reported_by, report_location
       FROM area_reports
       WHERE disaster_id = <cfqueryparam cfsqltype="cf_sql_integer" maxLength="10" value="#arguments.disasterID#">
+        AND approved = <cfqueryparam cfsqltype="cf_sql_integer" maxLength="1" value="1">
     </cfquery>
 
     <cfset areaReports = ArrayNew(2)>
@@ -220,7 +221,7 @@
         VALUES (
           <cfqueryparam cfsqltype="cf_sql_integer" maxLength="10" value="#arguments.disasterId#">,
           current_timestamp(),
-          <cfqueryparam cfsqltype="cf_sql_varchar" maxLength="45" value="#arguments.report#">,
+          <cfqueryparam cfsqltype="cf_sql_varchar" maxLength="225" value="#arguments.report#">,
           <cfqueryparam cfsqltype="cf_sql_varchar" maxLength="45" value="#arguments.reportedBy#">,
           <cfqueryparam cfsqltype="cf_sql_integer" maxLength="10" value="0">,
           <cfqueryparam cfsqltype="cf_sql_varchar" maxLength="45" value="#arguments.reportLocation#">,
@@ -246,6 +247,26 @@
       <cfcatch type="any">
         <cfset response[1] = 'error'>
         <cfset response[2] = '#cfcatch.message# #cfcatch.detail#'>
+
+        <cfset argumentValues = '
+          <strong>Error: #response[2]#</strong><br><br>
+
+          disasterId: #arguments.disasterId#<br>
+          reportedBy: #arguments.reportedBy#<br>
+          reportLocation: #arguments.reportLocation#<br>
+          report: #arguments.report#<br>
+          userIpAddress: #arguments.userIpAddress#<br>
+          userCity: #arguments.userCity#<br>
+          userState: #arguments.userState#<br>
+          userCounty: #arguments.userCounty#<br>
+          userCountry: #arguments.userCountry#<br>
+          userLat: #arguments.userLat#<br>
+          userLon: #arguments.userLon#<br>
+          userTimezone: #arguments.userTimezone#<br>
+        '>
+
+        <cfset sendErrorEmail = sendEmail("webmaster@hurricaneharveynewscenter.com", "error@hurricaneharveynewscenter.com", "An error occurred during saveAreaReport", "#argumentValues#")>
+
       </cfcatch>
 
     </cftry>
@@ -267,6 +288,20 @@
     </cfquery>
 
     <cfreturn '#disaster.name#'>
+  </cffunction>
+
+  <cffunction name="sendEmail" access="private">
+    <cfargument name="to" type="string" required="yes">
+    <cfargument name="from" type="string" required="yes">
+    <cfargument name="subject" type="string" required="yes">
+    <cfargument name="msg" type="string" required="yes">
+
+    <cfmail to="#arguments.to#" from="#arguments.from#" subject="#arguments.subject#" type="html">
+      #arguments.msg#
+
+      <cfdump var="#cgi#">
+      <cfdump var="#variables#">
+    </cfmail>
   </cffunction>
 
 </cfcomponent>
