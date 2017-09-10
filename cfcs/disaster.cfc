@@ -83,6 +83,8 @@
       FROM area_reports
       WHERE disaster_id = <cfqueryparam cfsqltype="cf_sql_integer" maxLength="10" value="#arguments.disasterID#">
         AND approved = <cfqueryparam cfsqltype="cf_sql_integer" maxLength="1" value="1">
+      ORDER BY date_reported DESC
+      LIMIT 4
     </cfquery>
 
     <cfset areaReports = ArrayNew(2)>

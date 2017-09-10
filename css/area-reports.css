@@ -7,18 +7,55 @@
   color:black;
 }
 
-.area-reports .date {
-  font-weight:bold;
+.area-report-container, .area-report-container-1, .area-report-container-2, .area-report-container-3 {
+  display:inline-block;
+  width:24%;
+  margin:25px 0;
+  padding:0 15px;
 }
-.area-reports .reporter {
-  margin:10px 0 25px 0;
-  text-align:right;
-  font-style:italic;
+.area-report-container .report {
+  height:135px;
+  overflow:hidden;
+}
+.area-report-container .date, .area-report-container-1 .date, .area-report-container-2 .date, .area-report-container-3 .date {
+  margin-bottom:5px;
+  font-weight:bold;
+  font-size:12px;
+}
+.area-report-container .reporter, .area-report-container-1 .reporter, .area-report-container-2 .reporter, .area-report-container-3 .reporter {
+  margin:10px 0 0 0;
+  font-weight: bold;
+}
+.area-report-container .location, .area-report-container-1 .location, .area-report-container-2 .location, .area-report-container-3 .location {
+  font-size:12px;
+}
+
+.area-report-container-1 {
+  width:100%;
+}
+.area-report-container-1 .report {
+  height:initial;
+  overflow:hidden;
+}
+.area-report-container-2 {
+  width:49%;
+}
+.area-report-container-2 .report {
+  height:65px;
+  overflow:hidden;
+}
+.area-report-container-3 {
+  width:33%;
+}
+.area-report-container-3 .report {
+  height:105px;
+  overflow:hidden;
 }
 
 .area-report-form {
   width:350px;
   margin:25px auto;
+  clear:both;
 }
 .area-report-form a {
   display: block;

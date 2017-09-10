@@ -18,3 +18,24 @@ function getCookieValue(cookieName) {
   }
   return "";
 }
+
+function setupDateString (dateObj) {
+  return `${dateObj.getMonth()+1}.${dateObj.getDate()}.${dateObj.getFullYear()}`;
+}
+
+function setupTimeString (timeObj) {
+
+  let hr = timeObj.getHours();
+  let minutes = timeObj.getMinutes();
+  let dayPart = 'am';
+
+  if (hr > 12) {
+    hr = hr - 12;
+    dayPart = 'pm';
+  }
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  return `${hr}:${minutes} ${dayPart}`;
+}

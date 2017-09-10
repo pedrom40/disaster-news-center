@@ -61,41 +61,6 @@ function setDisasterTitle () {
   $('h1 header span').html(disasterName);
 }
 
-function getAreaReports () {
-
-  // call getAreaReports service
-  let qData = {
-    method:'getAreaReports',
-    disasterID: disasterID
-  };
-  callDisasterService(qData, listAreaReports);
-
-}
-function listAreaReports (data) {
-
-  // if no reports
-  if (data.length !== 0) {
-
-    // start fresh
-    $('.js-area-reports').empty();
-
-    // loop thru reports
-    data.map( report => {
-
-      const template = `
-        <div class="date">${report[0]}</div>
-        <div class="report">${report[1]}</div>
-        <div class="reporter">- ${report[2]}</div>
-      `;
-
-      $('.js-area-reports').append(template);
-
-    });
-
-  }
-
-}
-
 function getAffectedAreas () {
 
   // call getAreaReports service
@@ -152,7 +117,7 @@ function listLocalHelpInfo (data) {
       </div>
       <div class="phone"><a href="tel:${contact[6]}">${contact[6]}</a></div>
       <div class="email"><a href="mailto:${contact[7]}">${contact[7]}</a></div>
-      <div class="message"><em>Message:</em> ${contact[8]}</div>
+      <div class="message">${contact[8]}</div>
     `;
 
     $('.js-local-help').append(template);
