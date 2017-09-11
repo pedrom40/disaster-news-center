@@ -1,6 +1,6 @@
 function getNationalOrganizations () {
 
-    let qData = {
+    var qData = {
       method:'getNationalOrganizations',
       disasterID: disasterID
     }

@@ -4,7 +4,7 @@ function loadMap () {
 
 function getMapCenter () {
 
-  let qData = {
+  var qData = {
     method:'getMapCenter',
     disasterID: disasterID
   };
@@ -25,7 +25,7 @@ function setMapCenter (data) {
 
 function getAffectedAreaCoordinates () {
 
-  let qData = {
+  var qData = {
     method:'getAffectedAreaCoordinates',
     disasterID: disasterID
   };
@@ -37,7 +37,7 @@ function loadMarkers (data) {
 
   data.map( area => {
 
-    let marker = new google.maps.Marker({
+    var marker = new google.maps.Marker({
       position: {lat: area[0], lng: area[1]},
       map: map,
       title:area[2]

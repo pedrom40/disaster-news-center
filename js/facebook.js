@@ -1,5 +1,5 @@
-let facebookAccessToken = '';
-let facebookUserId = '';
+var facebookAccessToken = '';
+var facebookUserId = '';
 
 // load facebook data
 function loadFacebookData () {
@@ -77,13 +77,13 @@ function listFacebookPages (data) {
   data['data'].map( page => {
 
     // setup about
-    let pageAbout = '';
+    var pageAbout = '';
     if ('about' in page) {
       pageAbout = `<div class="post-name">${page.about}</div>`;
     }
 
     // setup phone
-    let pagePhone = '';
+    var pagePhone = '';
     if ('phone' in page) {
       pagePhone = `Phone: ${page.phone}<br>`;
     }

@@ -1,7 +1,7 @@
 function getAreaReports () {
 
   // call getAreaReports service
-  let qData = {
+  var qData = {
     method:'getAreaReports',
     disasterID: disasterID
   };
@@ -20,7 +20,7 @@ function listAreaReports (data) {
     data.map( (report, index) => {
 
       // set containter class
-      let containterClassName = 'area-report-container';
+      var containterClassName = 'area-report-container';
       if (data.length === 1) {
         containterClassName = 'area-report-container-1';
       }
@@ -105,8 +105,8 @@ function listenForReportSubmissions () {
 
 function validatAreaReportData () {
 
-  let error = false;
-  let errorMsg = [];
+  var error = false;
+  var errorMsg = [];
 
   // empty error msg ul
   $('.areaReportErrorMsg').empty();

@@ -1,10 +1,10 @@
-'use strict';
+'use script';
 
 // init disaster vars
-let disasterInfo = [];
-let disasterID = 0;
-let disasterName = '';
-let map;
+var disasterInfo = [];
+var disasterID = 0;
+var disasterName = '';
+var map;
 
 
 // call all function
@@ -32,10 +32,10 @@ function initApp () {
 function getDisaster (name) {
 
   // call disaster service
-  let qData = {
+  var qData = {
     method: 'getDisaster',
     name: name
-  }
+  };
   callDisasterService(qData, loadDisaster);
 
 }

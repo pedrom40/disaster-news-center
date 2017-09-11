@@ -1,6 +1,6 @@
 function getLocalHelpInfo () {
 
-  let qData = {
+  var qData = {
     method:'getLocalHelpInfo',
     disasterID: disasterID
   }
@@ -16,25 +16,25 @@ function listLocalHelpInfo (data) {
   data.map( contact => {
 
     // setup address
-    let addressLine = '';
+    var addressLine = '';
     if (contact[2] !== '') {
       addressLine = `${contact[2]}<br>`;
     }
 
     // setup city
-    let cityLine = '';
+    var cityLine = '';
     if (contact[3] !== '') {
       cityLine = `${contact[3]}, ${contact[4]}`;
     }
 
     // setup email
-    let emailInfo = '';
+    var emailInfo = '';
     if (contact[7] !== '') {
       emailInfo = `<div class="email"><a href="mailto:${contact[7]}">${contact[7]}</a></div>`;
     }
 
     // setup link
-    let linkInfo = '';
+    var linkInfo = '';
     if (contact[8] !== '') {
       linkInfo = `<div class="link"><a href="${contact[8]}" target="_blank">Go to Site <i class="fa fa-external-link" aria-hidden="true"></i></a></div>`;
     }

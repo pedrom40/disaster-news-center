@@ -16,7 +16,7 @@ function listenForInstagramClick () {
 function loadInstagramContent () {
 
   // look for token cookie
-  let accessToken = getCookieValue('instagramToken');
+  var accessToken = getCookieValue('instagramToken');
 
   // check for access token cookie
   if (accessToken !== '') {
@@ -30,13 +30,13 @@ function loadInstagramContent () {
   else {
 
     // get current url
-    let currentUrl = window.location.href.toString();
+    var currentUrl = window.location.href.toString();
 
     // check for access token
     if (currentUrl.search('access_token') !== -1) {
 
       // split url
-      let splitUrl = currentUrl.split('=');
+      var splitUrl = currentUrl.split('=');
 
       // save access token value
       accessToken = splitUrl[1];
@@ -66,7 +66,7 @@ function listInstagramContent (data) {
 
   data['data'].map( post => {
 
-    let postCaption = '';
+    var postCaption = '';
     if (post.caption !== null) {
       postCaption = post.caption.text;
     }

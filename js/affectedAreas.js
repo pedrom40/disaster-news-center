@@ -1,7 +1,7 @@
 function getAffectedAreas () {
 
   // call getAreaReports service
-  let qData = {
+  var qData = {
     method:'getAffectedAreas',
     disasterID: disasterID
   };
@@ -14,7 +14,7 @@ function listAffectedAreasList (data) {
   $('.area-list').empty();
 
   // var to calculate total population
-  let totalPop = 0;
+  var totalPop = 0;
 
   data.map( area => {
 

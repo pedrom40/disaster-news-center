@@ -25,9 +25,9 @@ function setupDateString (dateObj) {
 
 function setupTimeString (timeObj) {
 
-  let hr = timeObj.getHours();
-  let minutes = timeObj.getMinutes();
-  let dayPart = 'am';
+  var hr = timeObj.getHours();
+  var minutes = timeObj.getMinutes();
+  var dayPart = 'am';
 
   if (hr > 12) {
     hr = hr - 12;

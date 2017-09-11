@@ -1,7 +1,7 @@
 // get local youtube channel ids
 function getLocalNewsYouTubeChannels () {
 
-  let qData = {
+  var qData = {
     method: 'getLocalYouTubeChannelIds',
     disasterID: disasterID
   }
@@ -30,7 +30,7 @@ function getLocalVideos (data) {
 function getNationalVideoChannels () {
 
   // setup data
-  let qData = {
+  var qData = {
     method: 'getNationalYouTubeChannelIds',
     disasterID: disasterID
   };
