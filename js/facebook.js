@@ -49,7 +49,7 @@ function statusChangeCallback(response) {
   // if not logged in or login failed
   else {
 
-    $('#fb-status').html(`<p>Click the login button below to allow your Facebook Timeline to appear here. We will not post to your timeline or change anything, we just display your info.</p>`);
+    $('#fb-status').html(`<p>Click the login button below to allow Facebook Pages to appear here. We will not post to your timeline or change anything, we just display helpful pages here.</p>`);
 
   }
 
