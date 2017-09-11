@@ -247,6 +247,24 @@
       <cfset response[1] = 'success'>
       <cfset response[2] = #newRecord.last_record_id#>
 
+      <cfset argumentValues = '
+        <strong>New ID: #response[2]#</strong><br><br>
+
+        disasterId: #arguments.disasterId#<br>
+        reportedBy: #arguments.reportedBy#<br>
+        reportLocation: #arguments.reportLocation#<br>
+        report: #arguments.report#<br>
+        userIpAddress: #arguments.userIpAddress#<br>
+        userCity: #arguments.userCity#<br>
+        userState: #arguments.userState#<br>
+        userCounty: #arguments.userCounty#<br>
+        userCountry: #arguments.userCountry#<br>
+        userLat: #arguments.userLat#<br>
+        userLon: #arguments.userLon#<br>
+        userTimezone: #arguments.userTimezone#<br>
+      '>
+      <cfset sendSuccessEmail = sendEmail("webmaster@disasternewscenter.com", "reports@disasternewscenter.com", "A New Area Report Has Been Submitted", "#argumentValues#")>
+
       <cfcatch type="any">
         <cfset response[1] = 'error'>
         <cfset response[2] = '#cfcatch.message# #cfcatch.detail#'>
@@ -267,7 +285,6 @@
           userLon: #arguments.userLon#<br>
           userTimezone: #arguments.userTimezone#<br>
         '>
-
         <cfset sendErrorEmail = sendEmail("webmaster@disasternewscenter.com", "error@disasternewscenter.com", "An error occurred during saveAreaReport", "#argumentValues#")>
 
       </cfcatch>

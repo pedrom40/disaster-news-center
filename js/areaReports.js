@@ -10,11 +10,11 @@ function getAreaReports () {
 }
 function listAreaReports (data) {
 
-  // start fresh
-  $('.js-area-reports').empty();
-
-  // if no reports
+  // if reports come back
   if (data.length !== 0) {
+
+    // start fresh
+    $('.js-area-reports').empty();
 
     // loop thru reports
     data.map( (report, index) => {
@@ -52,18 +52,6 @@ function listAreaReports (data) {
 
   }
 
-  else {
-
-    $('.js-area-reports').html(`
-      <p>
-        If you are within the area of this event and are able to safely do so,
-        please <a href="#" class="js-submit-report-btn"><strong>submit a report</strong></a> to let us
-        know what is going on and/or how we can help.
-      </p>
-    `);
-
-  }
-
 }
 
 function listenForReportSubmissionClicks () {
@@ -74,7 +62,7 @@ function listenForReportSubmissionClicks () {
     $('.area-report-form').toggle(function () {
       $('html, body').animate({
         scrollTop: $('.area-report-form').offset().top
-      }, 2000);
+      }, 1000);
     });
 
     // get user info
@@ -98,12 +86,8 @@ function fillUserData (data) {
 
 function listenForCloseReportFormClicks () {
 
-  $('.js-area-reports').click( event => {
-
-    if ($(event.target).html() === 'submit a report'); {
-      $('.area-report-form').toggle();
-    }
-
+  $('.js-form-close-btn').click( event => {
+    $('.area-report-form').toggle();
   });
 
 }
@@ -233,6 +217,10 @@ function areaReportResponse (data) {
       .addClass('success')
       .html('Your report has been submitted and is under review. It will appear on the site immediately upon approval.')
       .show();
+
+    $('html, body').animate({
+      scrollTop: $('.area-reports').offset().top
+    }, 1000);
 
   }
   else {

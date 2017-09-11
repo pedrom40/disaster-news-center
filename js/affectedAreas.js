@@ -24,7 +24,10 @@ function listAffectedAreasList (data) {
 
   });
 
+  // format number with commas
+  const formattedPopulation = addCommas(totalPop);
+
   // update populate count
-  $('.js-potential-population-impacted').html(`<em>Potential Population Impact:</em> ${totalPop}`);
+  $('.js-potential-population-impacted').html(`<em>Potential Population Impact:</em> ${formattedPopulation}`);
 
 }

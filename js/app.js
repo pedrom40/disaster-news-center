@@ -22,6 +22,10 @@ function initApp () {
   loadFacebookData();
   loadTwitterWidget();
 
+  // set timers to recall these functions every 3 minutes
+  const getAreaReportsTimer = setInterval(getAreaReports, 180000);
+  const getFacebookPagesTimer = setInterval(getFacebookPages, 180000);
+
 }
 
 // starts everything by returning disaster record data
