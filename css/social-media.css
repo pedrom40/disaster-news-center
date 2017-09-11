@@ -1,10 +1,3 @@
-.social-media-feed {
-  display:none;
-  overflow-y:scroll;
-  overflow-x:hidden;
-  height:625px;
-  padding-right:15px;
-}
 .social-media-posts li {
   width:100%;
   padding:15px;
@@ -51,4 +44,16 @@
 .social-media-feed::-webkit-scrollbar-thumb {
   background-color:darkgrey;
   outline:1px solid slategrey;
+}
+
+@media only screen and (min-width:768px) {
+
+  .social-media-feed {
+    display:none;
+    overflow-y:scroll;
+    overflow-x:hidden;
+    height:625px;
+    padding-right:15px;
+  }
+
 }

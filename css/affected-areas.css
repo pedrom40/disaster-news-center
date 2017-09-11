@@ -27,7 +27,11 @@
 .help-block .email {
   margin-bottom:10px;
 }
+.help-block .link {
+  margin-top:10px;
+}
 .help-block .message {
+  margin-top:10px;
   margin-bottom:35px;
 }
 .help-block .logo {

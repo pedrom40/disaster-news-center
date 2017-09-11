@@ -142,7 +142,7 @@
     <cfargument name="disasterID" type="numeric" required="yes">
 
     <cfquery name="local_help" datasource="#getDS()#">
-      SELECT type, name, address, city, state, zip, phone, email, msg
+      SELECT type, name, address, city, state, zip, phone, email, link, msg
       FROM local_help_information
       WHERE disaster_id = <cfqueryparam cfsqltype="cf_sql_integer" maxLength="10" value="#arguments.disasterID#">
     </cfquery>
@@ -158,7 +158,8 @@
       <cfset localHelp[#currentrow#][6] = #local_help.zip#>
       <cfset localHelp[#currentrow#][7] = #local_help.phone#>
       <cfset localHelp[#currentrow#][8] = #local_help.email#>
-      <cfset localHelp[#currentrow#][9] = #local_help.msg#>
+      <cfset localHelp[#currentrow#][9] = #local_help.link#>
+      <cfset localHelp[#currentrow#][10] = #local_help.msg#>
     </cfoutput>
 
     <cfreturn #serializeJSON(localHelp)#>

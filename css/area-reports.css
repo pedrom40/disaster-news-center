@@ -9,13 +9,9 @@
 
 .area-report-container, .area-report-container-1, .area-report-container-2, .area-report-container-3 {
   display:inline-block;
-  width:24%;
+  width:100%;
   margin:25px 0;
   padding:0 15px;
-}
-.area-report-container .report {
-  height:135px;
-  overflow:hidden;
 }
 .area-report-container .date, .area-report-container-1 .date, .area-report-container-2 .date, .area-report-container-3 .date {
   margin-bottom:5px;
@@ -30,30 +26,17 @@
   font-size:12px;
 }
 
-.area-report-container-1 {
+.area-report-container-1, .area-report-container-2, .area-report-container-3 {
   width:100%;
 }
 .area-report-container-1 .report {
   height:initial;
   overflow:hidden;
 }
-.area-report-container-2 {
-  width:49%;
-}
-.area-report-container-2 .report {
-  height:65px;
-  overflow:hidden;
-}
-.area-report-container-3 {
-  width:33%;
-}
-.area-report-container-3 .report {
-  height:105px;
-  overflow:hidden;
-}
+
 
 .area-report-form {
-  width:350px;
+  width:100%;
   margin:25px auto;
   clear:both;
 }
@@ -77,4 +60,41 @@
 }
 .area-report-form input[type='button'] {
   margin-bottom:0;
+}
+
+@media only screen and (min-width:768px) {
+
+  .area-report-container {
+    width:24%;
+  }
+  .area-report-container .report {
+    height:255px;
+  }
+
+  .area-report-container-2 {
+    width:49%;
+  }
+  .area-report-container-2 .report {
+    height:125px;
+  }
+
+  .area-report-container-3 {
+    width:32%;
+  }
+  .area-report-container-3 .report {
+    height:200px;
+  }
+
+  .area-report-form {
+    width:350px;
+  }
+
+}
+
+@media only screen and (min-width:992px) {
+
+  .area-report-container .report {
+    height:150px;
+  }
+
 }

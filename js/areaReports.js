@@ -10,11 +10,11 @@ function getAreaReports () {
 }
 function listAreaReports (data) {
 
+  // start fresh
+  $('.js-area-reports').empty();
+
   // if no reports
   if (data.length !== 0) {
-
-    // start fresh
-    $('.js-area-reports').empty();
 
     // loop thru reports
     data.map( (report, index) => {
@@ -52,14 +52,30 @@ function listAreaReports (data) {
 
   }
 
+  else {
+
+    $('.js-area-reports').html(`
+      <p>
+        If you are within the area of this event and are able to safely do so,
+        please <a href="#" class="js-submit-report-btn"><strong>submit a report</strong></a> to let us
+        know what is going on and/or how we can help.
+      </p>
+    `);
+
+  }
+
 }
 
 function listenForReportSubmissionClicks () {
 
   $('.js-submit-report-btn').click( event => {
 
-    // show form
-    $('.area-report-form').toggle();
+    // show and scroll to form
+    $('.area-report-form').toggle(function () {
+      $('html, body').animate({
+        scrollTop: $('.area-report-form').offset().top
+      }, 2000);
+    });
 
     // get user info
     callUserInfoService(fillUserData);
@@ -81,9 +97,15 @@ function fillUserData (data) {
 }
 
 function listenForCloseReportFormClicks () {
-  $('.js-form-close-btn').click( event => {
-    $('.area-report-form').toggle();
+
+  $('.js-area-reports').click( event => {
+
+    if ($(event.target).html() === 'submit a report'); {
+      $('.area-report-form').toggle();
+    }
+
   });
+
 }
 function listenForReportSubmissions () {
   $('#areaReportSubmitBtn').click( event => {

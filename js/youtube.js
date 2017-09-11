@@ -124,6 +124,11 @@ function listenForPreviewClicks () {
 
       // call video api
       callYouTubeVideoAPI(anchorClicked[0].attributes.videoID.value, updateMainVideoFromAnchorClick);
+
+      $('.social-media-feed').animate({
+        scrollTop: 0
+      }, 'slow');
+
     }
 
   });

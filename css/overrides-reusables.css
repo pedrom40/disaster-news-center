@@ -51,18 +51,7 @@ li .right-side {
 }
 
 .expand-feed-btn {
-  display:block;
-  width:100%;
-  padding-top:10px;
-  text-decoration:none;
-  text-align:center;
-  color:#999;
-}
-.expand-feed-btn:hover {
-  color:#333;
-}
-.expand-feed-btn i {
-  padding:0 15px;
+  display:none;
 }
 
 /* CSS loader */
@@ -110,6 +99,21 @@ li .right-side {
 
   li .left-side {
     width: 40%;
+  }
+
+  .expand-feed-btn {
+    display:block;
+    width:100%;
+    padding-top:25px;
+    text-decoration:none;
+    text-align:center;
+    color:#999;
+  }
+  .expand-feed-btn:hover {
+    color:#333;
+  }
+  .expand-feed-btn i {
+    padding:0 15px;
   }
 
 }

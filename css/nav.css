@@ -26,16 +26,6 @@ nav {
   color:#ccc;
 }
 
-/* landscape small phone */
-@media only screen and (min-width: 560px) {
-
-  .nav li {
-    display: inline-block;
-    width: 255px;
-  }
-
-}
-
 /* tablets */
 @media only screen and (min-width:768px) {
 
