@@ -1,3 +1,6 @@
+let facebookAccessToken = '';
+let facebookUserId = '';
+
 // load facebook data
 function loadFacebookData () {
 
@@ -27,69 +30,6 @@ function loadFacebookData () {
 
 }
 
-// load facebook user's feed
-function getFacebookUsersFeed (facebookResponse) {
-
-  let facebookUserData = [facebookResponse.authResponse.userID, facebookResponse.authResponse.accessToken];
-  callFacebookGraphApiForTimeline(facebookUserData, listFacebookFeed);
-
-}
-
-// list facebook feed
-function listFacebookFeed (data) {
-
-  data['data'].map( post => {
-
-    // setup post story for display
-    let postStory = '';
-    if ('story' in post) {
-      postStory = `<div class="post-story">${post.story}</div>`;
-    }
-
-    // setup post message for display
-    let postName = '';
-    if ('name' in post) {
-      postName = `<div class="post-name">${post.name}</div>`;
-    }
-
-    // setup post message for display
-    let postMsg = '';
-    if ('message' in post) {
-      postMsg = `<div class="post-message">${post.message}</div>`;
-    }
-
-    // setup post description for display
-    let postDescription = '';
-    if ('description' in post) {
-      postDescription = `<div class="post-description">${post.description}</div>`;
-    }
-
-    // setup post picture for display
-    let postPicture = '';
-    if ('picture' in post) {
-      postPicture = `<div class="post-picture"><img src="${post.picture}"></div>`;
-    }
-
-    // put it all together
-    let template = `
-      <li>
-        <a href="${post.permalink_url}" target="_blank">
-          ${postStory}
-          ${postName}
-          ${postMsg}
-          ${postPicture}
-          ${postDescription}
-        </a>
-      </li>
-    `;
-
-    // send html to page
-    $('.js-facebook-list').append(template);
-
-  });
-
-}
-
 // This is called with the results from from FB.getLoginStatus().
 function statusChangeCallback(response) {
 
@@ -99,8 +39,10 @@ function statusChangeCallback(response) {
     // hide login instructions
     $('.js-facebook-status').hide();
 
-    // send response to make call to FB API
-    getFacebookUsersFeed(response);
+    facebookAccessToken = response.authResponse.accessToken;
+    facebookUserId = response.authResponse.userID;
+
+    getFacebookPages();
 
   }
 
@@ -116,22 +58,66 @@ function statusChangeCallback(response) {
 
 }
 
-// This function is called when someone finishes with the Login Button. See the onlogin handler attached to it in the sample code below.
+// called when someone finishes with the Login Button
 function checkLoginState() {
   FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
   });
 }
 
-// calls youtube video search by video ID
-function callFacebookGraphApiForTimeline (facebookUserData, callback) {
+function getFacebookPages () {
+  callFacebookPageSearchApi(listFacebookPages);
+}
 
-  // set API call parameters
+function listFacebookPages (data) {
+
+  // start fresh
+  $('.js-facebook-list').empty();
+
+  data['data'].map( page => {
+
+    // setup about
+    let pageAbout = '';
+    if ('about' in page) {
+      pageAbout = `<div class="post-name">${page.about}</div>`;
+    }
+
+    // setup phone
+    let pagePhone = '';
+    if ('phone' in page) {
+      pagePhone = `Phone: ${page.phone}<br>`;
+    }
+
+    const template = `
+      <li>
+        <a href="${page.link}" target="_blank">
+          <div class="post-story">${page.name}</div>
+          <div class="post-picture"><img src="${page.cover.source}"></div>
+          <div class="post-description">
+            ${pageAbout}
+            ${pagePhone}
+            Category: ${page.category}<br>
+            Likes: ${page.fan_count}
+          </div>
+        </a>
+      </li>
+    `;
+
+    $('.js-facebook-list').append(template);
+
+  });
+
+}
+
+function callFacebookPageSearchApi (callback) {
+
   const settings = {
-    url: `https://graph.facebook.com/${facebookUserData[0]}/feed`,
+    url: `https://graph.facebook.com/search/`,
     data: {
-      fields: 'id,from,name,message,created_time,story,description,link,picture,status_type,object_id,permalink_url',
-      access_token: facebookUserData[1]
+      access_token: facebookAccessToken,
+      q: disasterName,
+      type: 'page',
+      fields: 'name,about,link,category,cover,fan_count,phone'
     },
     dataType: 'json',
     type: 'GET',

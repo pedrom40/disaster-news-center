@@ -267,7 +267,7 @@
           userTimezone: #arguments.userTimezone#<br>
         '>
 
-        <cfset sendErrorEmail = sendEmail("webmaster@hurricaneharveynewscenter.com", "error@hurricaneharveynewscenter.com", "An error occurred during saveAreaReport", "#argumentValues#")>
+        <cfset sendErrorEmail = sendEmail("webmaster@disasternewscenter.com", "error@disasternewscenter.com", "An error occurred during saveAreaReport", "#argumentValues#")>
 
       </cfcatch>
 

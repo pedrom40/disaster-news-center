@@ -1,6 +1,6 @@
 function loadTwitterWidget () {
 
-  $('.social-media-feed.js-twitter-feed').html(`<a class="twitter-timeline" href="https://twitter.com/hashtag/HurricaneHarvey" data-widget-id="905814717444349952">#HurricaneHarvey Tweets</a>`);
+  $('.social-media-feed.js-twitter-feed').html(`<a class="twitter-timeline" href="https://twitter.com/hashtag/${disasterName.toString().replace(' ', '')}" data-widget-id="905814717444349952">#${disasterName.toString().replace(' ', '')} Tweets</a>`);
 
   !function(d,s,id){
     var js,

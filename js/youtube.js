@@ -115,13 +115,16 @@ function updateMainVideoFromAnchorClick (videoObj) {
 function listenForPreviewClicks () {
 
   $('.video-list').click( event => {
-    event.preventDefault();
 
-    // get a tag info
-    const anchorClicked = $(event.target).closest('a');
+    if (event.target.target !== '_blank') {
+      event.preventDefault();
 
-    // call video api
-    callYouTubeVideoAPI(anchorClicked[0].attributes.videoID.value, updateMainVideoFromAnchorClick);
+      // get a tag info
+      const anchorClicked = $(event.target).closest('a');
+
+      // call video api
+      callYouTubeVideoAPI(anchorClicked[0].attributes.videoID.value, updateMainVideoFromAnchorClick);
+    }
 
   });
 
@@ -147,17 +150,17 @@ function listLocalVideos (data) {
       // setup li html with data
       const template = `
         <li>
-          <a href="#" videoID="${item.id.videoId}" class="js-preview-btn">
+          <a href="#" videoID="${item.id.videoId}" class="js-preview-btn" target="">
             <div class="thumb left-side">
               <img src="${item.snippet.thumbnails.default.url}" alt="${item.snippet.title} image">
             </div>
             <div class="description right-side">
               ${trimString(item.snippet.title.toString(), 49)}
             </div>
-            <div class="source">
-              <a href="#">More from ${item.snippet.channelTitle}</a>
-            </div>
           </a>
+          <div class="source">
+            <a href="https://www.youtube.com/channel/${item.snippet.channelId}" target="_blank">More from ${item.snippet.channelTitle}</a>
+          </div>
         </li>
       `;
 
@@ -198,7 +201,7 @@ function listNationalVideos (data) {
               ${trimString(item.snippet.title.toString(), 49)}
             </div>
             <div class="source">
-              <a href="#">More from ${item.snippet.channelTitle}</a>
+              <a href="https://www.youtube.com/channel/${item.snippet.channelId}" target="_blank">More from ${item.snippet.channelTitle}</a>
             </div>
           </a>
         </li>
@@ -241,7 +244,7 @@ function listPublicVideos (data) {
               ${trimString(item.snippet.title.toString(), 49)}
             </div>
             <div class="source">
-              <a href="#">More from ${item.snippet.channelTitle}</a>
+              <a href="https://www.youtube.com/channel/${item.snippet.channelId}" target="_blank">More from ${item.snippet.channelTitle}</a>
             </div>
           </a>
         </li>

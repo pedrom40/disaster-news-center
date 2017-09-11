@@ -23,6 +23,7 @@
 }
 .social-media-posts .post-name {
   margin-bottom:15px;
+  clear:both;
 }
 .social-media-posts .post-message {
   margin-bottom:10px;
