@@ -34,6 +34,13 @@
   overflow:hidden;
 }
 
+.areaReportErrorMsg {
+  padding:5px;
+}
+.areaReportErrorMsg li {
+  display: block;
+  padding: 5px 8px;
+}
 
 .area-report-form {
   width:100%;
@@ -75,14 +82,14 @@
     width:49%;
   }
   .area-report-container-2 .report {
-    height:125px;
+    height:70px;
   }
 
   .area-report-container-3 {
     width:32%;
   }
   .area-report-container-3 .report {
-    height:200px;
+    height:110px;
   }
 
   .area-report-form {

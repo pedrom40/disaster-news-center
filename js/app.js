@@ -10,6 +10,7 @@ var map;
 // call all function
 function initApp () {
 
+  setupUserSession();
   listenForMenuToggle();
   listenForPreviewClicks();
   listenForReportSubmissionClicks();

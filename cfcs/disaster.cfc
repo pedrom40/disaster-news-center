@@ -263,7 +263,7 @@
         userLon: #arguments.userLon#<br>
         userTimezone: #arguments.userTimezone#<br>
       '>
-      <cfset sendSuccessEmail = sendEmail("webmaster@disasternewscenter.com", "reports@disasternewscenter.com", "A New Area Report Has Been Submitted", "#argumentValues#")>
+      <cfset sendSuccessEmail = sendEmail("webmaster@disasternewscenter.org", "reports@disasternewscenter.org", "A New Area Report Has Been Submitted", "#argumentValues#")>
 
       <cfcatch type="any">
         <cfset response[1] = 'error'>
@@ -285,7 +285,7 @@
           userLon: #arguments.userLon#<br>
           userTimezone: #arguments.userTimezone#<br>
         '>
-        <cfset sendErrorEmail = sendEmail("webmaster@disasternewscenter.com", "error@disasternewscenter.com", "An error occurred during saveAreaReport", "#argumentValues#")>
+        <cfset sendErrorEmail = sendEmail("webmaster@disasternewscenter.org", "error@disasternewscenter.org", "An error occurred during saveAreaReport", "#argumentValues#")>
 
       </cfcatch>
 
