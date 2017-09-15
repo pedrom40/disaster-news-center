@@ -9,11 +9,14 @@
 }
 .social-media-posts li {
   width:100%;
-  padding:15px;
+  padding:15px 0 25px 0;
   border-bottom:dotted 1px #ebebeb;
 }
-.social-media-posts li:hover {
-  background-color:#ebebeb;
+.social-media-posts li:first-child {
+  padding-top:0;
+}
+.social-media-posts li:first-child .post-story {
+  margin-top:0;
 }
 .social-media-posts li a {
   text-decoration: none;
@@ -34,6 +37,12 @@
 .social-media-posts .post-picture {
   float:left;
   width:38%;
+  height:85px;
+  overflow: hidden;
+  border-radius: 8px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .social-media-posts .post-description {
   float:right;
@@ -62,7 +71,7 @@
     overflow-y:scroll;
     overflow-x:hidden;
     height:625px;
-    padding-right:15px;
+    padding-right:25px;
   }
 
 }

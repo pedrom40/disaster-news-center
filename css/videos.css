@@ -8,16 +8,30 @@
 .video-list li {
   width:100%;
   min-height:100px;
+  margin-bottom:20px;
+}
+.video-list li a {
+  color:#252525;
+  text-decoration:none;
 }
 .video-list li .thumb img {
   width:100%;
+  border-radius: 8px;
 }
 .video-list li .description {
   font-size:14px;
 }
 .video-list li .source {
-  clear: both;
-  margin-bottom: 25px;
+  margin-top:10px;
+  color:white;
+  border-radius: 6px;
+  background:#ff0000;
+}
+.video-list li .source a.channel {
+  display: block;
+  padding: 5px 7px;
+  color: white;
+  font-size: 10px;
 }
 
 .iframe-container {
@@ -26,6 +40,7 @@
   padding-top:35px;
   height:0;
   overflow:hidden;
+  border-radius:8px;
 }
 .iframe-container iframe {
   position:absolute;
@@ -48,7 +63,7 @@
 @media only screen and (min-width:640px) {
 
   .video-list li .description {
-    font-size:16px;
+    font-size:12px;
   }
 
 }

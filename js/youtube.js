@@ -61,11 +61,6 @@ function getNationalNewsVideoFromSource (source, q) {
   callYouTubeSearchAPI(source, q, 1, listNationalVideos);
 }
 
-// get regular user uploaded videos
-function getPublicVideos (disasterName) {
-  callYouTubeSearchAPI('', disasterName, 4, listPublicVideos);
-}
-
 // set main video
 function setMainVideo (data) {
 
@@ -161,11 +156,13 @@ function listLocalVideos (data) {
             </div>
             <div class="description right-side">
               ${trimString(item.snippet.title.toString(), 49)}
+              <div class="source">
+                <a href="https://www.youtube.com/channel/${item.snippet.channelId}" target="_blank" class="channel">
+                  More from ${item.snippet.channelTitle}
+                </a>
+              </div>
             </div>
           </a>
-          <div class="source">
-            <a href="https://www.youtube.com/channel/${item.snippet.channelId}" target="_blank">More from ${item.snippet.channelTitle}</a>
-          </div>
         </li>
       `;
 
@@ -204,9 +201,11 @@ function listNationalVideos (data) {
             </div>
             <div class="description right-side">
               ${trimString(item.snippet.title.toString(), 49)}
-            </div>
-            <div class="source">
-              <a href="https://www.youtube.com/channel/${item.snippet.channelId}" target="_blank">More from ${item.snippet.channelTitle}</a>
+              <div class="source">
+                <a href="https://www.youtube.com/channel/${item.snippet.channelId}" target="_blank" class="channel">
+                  More from ${item.snippet.channelTitle}
+                </a>
+              </div>
             </div>
           </a>
         </li>
@@ -219,48 +218,6 @@ function listNationalVideos (data) {
 
   }
 
-}
-
-// list public videos
-function listPublicVideos (data) {
-
-  // if no results returned
-  if (data.items.length === 0) {
-
-    // let user know
-    $('.js-public-video-list').append('Sorry, no results found for your search. Please try again.');
-
-  }
-
-  // if results found
-  else {
-
-    // loop thru data to create most viewed ul li's
-    data.items.map( (item, index) => {
-
-      // setup li html with data
-      const template = `
-        <li>
-          <a href="#" videoID="${item.id.videoId}" class="js-preview-btn">
-            <div class="thumb left-side">
-              <img src="${item.snippet.thumbnails.default.url}" alt="${item.snippet.title} image">
-            </div>
-            <div class="description right-side">
-              ${trimString(item.snippet.title.toString(), 49)}
-            </div>
-            <div class="source">
-              <a href="https://www.youtube.com/channel/${item.snippet.channelId}" target="_blank">More from ${item.snippet.channelTitle}</a>
-            </div>
-          </a>
-        </li>
-      `;
-
-      // append li to ul
-      $('.js-public-video-list').append(template);
-
-    });
-
-  }
 }
 
 // calls youtube search API with search term and credentials

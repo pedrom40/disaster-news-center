@@ -51,7 +51,6 @@ function loadDisaster (data) {
   setDisasterTitle();
   getLocalNewsYouTubeChannels();
   getNationalVideoChannels();
-  getPublicVideos();
   getAreaReports();
   getAffectedAreas();
   loadMap();
@@ -84,8 +83,8 @@ function listenForExpandRowClicks () {
 
     if (event.target.text.search('Expand') !== -1) {
 
-      $('.social-media-feed').css('height', '2000px');
-      $('#twitter-widget-0').css('height', '2000px');
+      $('.social-media-feed').css('height', '1450px');
+      $('#twitter-widget-0').css('height', '1450px');
 
       $(event.target).html('<i class="fa fa-angle-up" aria-hidden="true"></i> Collapse Row <i class="fa fa-angle-up" aria-hidden="true"></i>');
 

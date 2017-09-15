@@ -92,7 +92,7 @@ function listFacebookPages (data) {
       <li>
         <a href="${page.link}" target="_blank">
           <div class="post-story">${page.name}</div>
-          <div class="post-picture"><img src="${page.cover.source}"></div>
+          <div class="post-picture" style="background-image:url(${page.cover.source})"></div>
           <div class="post-description">
             ${pageAbout}
             ${pagePhone}
