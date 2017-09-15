@@ -1,3 +1,12 @@
+.youtube-header {
+  color:#ff0000;
+}
+.facebook-header {
+  color:#4267B2;
+}
+.twitter-header {
+  color:#1DA1F2;
+}
 .social-media-posts li {
   width:100%;
   padding:15px;

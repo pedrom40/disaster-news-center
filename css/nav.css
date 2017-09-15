@@ -49,3 +49,18 @@ nav {
   }
 
 }
+
+/* desktops */
+@media only screen and (min-width:1024px) {
+
+  .nav-bar {
+    height:65px;
+  }
+  .nav {
+    margin-top:12px;
+  }
+  .nav li {
+    padding-left:40px;
+  }
+
+}
