@@ -1,8 +1,14 @@
 /* tag overrides */
 body {
-  font-family:"Roboto", sans-serif;
+  font-family:"Merriweather", serif;
   color:#252525;
   overflow-x:hidden;
+}
+h1, h2, h3 {
+  font-family: "Oswald", sans-serif;
+}
+h2 {
+  margin-bottom: 25px;
 }
 button, input[type='button'] {
   cursor: pointer;

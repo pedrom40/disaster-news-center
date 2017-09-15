@@ -3,10 +3,12 @@
 }
 .header h1 {
   font-size:16px;
+  margin-bottom: 20px;
 }
 .header h1 span {
   display: block;
-  font-size: 28px;
+  font-size: 34px;
+  line-height: 30px;
 }
 
 /* landscape small phone */
@@ -27,7 +29,7 @@
 
   .header h1 {
     position: absolute;
-    top: -7px;
+    top: -10px;
     font-size: 20px;
     color: white;
   }
@@ -41,7 +43,7 @@
 @media only screen and (min-width:1024px) {
 
   .header h1 {
-    top:-5px;
+    top:-9px;
     font-size:28px;
   }
   .header h1 span {

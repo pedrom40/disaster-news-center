@@ -7,9 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Merriweather|Oswald" rel="stylesheet">
 
   <link href="/css/grid.css" rel="stylesheet">
+  <link href="/css/modal.css" rel="stylesheet">
   <link href="/css/main.css" rel="stylesheet">
 
   <!-- Global Site Tag (gtag.js) - Google Analytics -->
@@ -82,39 +83,57 @@
           <div class="js-area-reports">
             <p>
               If you are within the area of this event and are able to safely do so,
-              please <a href="#" class="js-submit-report-btn"><strong>submit a report</strong></a> to let us
+              please <a href="#areaReportFormModal" class="js-submit-report-btn"><strong>submit a report</strong></a> to let us
               know what is going on and/or how we can help.
             </p>
           </div>
-          <div class="js-area-report-form-response"></div>
-          <form id="submitReportForm" class="area-report-form" role="form" style="display:none;">
-            <a href="#" class="js-form-close-btn"><i class="fa fa-times"></i></a>
 
-            <legend class="hide">Submit an Area Report</legend>
+          <div id="areaReportFormModal" class="modal" role="dialog" aria-labelledby="Modal title" aria-describedby="Modal description">
+              <div class="modal-content">
+                <div class="header">
+                   <a href="#" id="close">
+                     <div class="box box3">
+                      <svg viewBox="0 0 40 40">
+                        <path class="close-x" d="M 10,10 L 30,30 M 30,10 L 10,30"></path>
+                      </svg>
+                    </div>
+                  </a>
+                  <h2>Submit an Area Report</h2>
+                </div>
+                <div class="copy">
+                  <div class="js-area-report-form-response"></div>
+                  <form id="submitReportForm" class="area-report-form" role="form">
 
-            <ul class="areaReportErrorMsg hide error unstyle-list"></ul>
+                    <legend class="hide">Submit an Area Report</legend>
 
-            <label for="reported_by">Your Name:</label>
-            <input type="text" id="reported_by" maxlength="45" placeholder="John Doe">
+                    <ul class="areaReportErrorMsg hide error unstyle-list"></ul>
 
-            <label for="report_location">Your Current Location:</label>
-            <input type="text" id="report_location" maxlength="45" placeholder="City/State you want to report about">
+                    <label for="reported_by">Your Name:</label>
+                    <input type="text" id="reported_by" maxlength="45" placeholder="John Doe">
 
-            <label for="report">Report Details</label>
-            <textarea id="report" maxlength="225" placeholder="Warn people of danger, ask for food donations or just give an update."></textarea>
+                    <label for="report_location">Report Location:</label>
+                    <input type="text" id="report_location" maxlength="45" placeholder="City/State you want to report about">
 
-            <input type="button" id="areaReportSubmitBtn" value="Submit Report">
+                    <label for="report">Report Details</label>
+                    <textarea id="report" maxlength="225" placeholder="Warn people of danger, ask for food donations or just give an update."></textarea>
 
-            <input type="hidden" id="spam_check">
-            <input type="hidden" id="user_ip_address">
-            <input type="hidden" id="user_city">
-            <input type="hidden" id="user_state">
-            <input type="hidden" id="user_county">
-            <input type="hidden" id="user_country">
-            <input type="hidden" id="user_lat">
-            <input type="hidden" id="user_lon">
-            <input type="hidden" id="user_timezone">
-          </form>
+                    <input type="button" id="areaReportSubmitBtn" value="Submit Report">
+
+                    <input type="hidden" id="spam_check">
+                    <input type="hidden" id="user_ip_address">
+                    <input type="hidden" id="user_city">
+                    <input type="hidden" id="user_state">
+                    <input type="hidden" id="user_county">
+                    <input type="hidden" id="user_country">
+                    <input type="hidden" id="user_lat">
+                    <input type="hidden" id="user_lon">
+                    <input type="hidden" id="user_timezone">
+                  </form>
+                </div>
+              </div>
+            <a href="#"><div class="overlay"></div></a>
+          </div>
+
         </div>
       </div>
     </section>

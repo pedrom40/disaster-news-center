@@ -17,6 +17,10 @@
 .help-block {
   margin-top:35px;
 }
+.contact-container {
+  margin:15px;
+  box-shadow: 2px 2px 5px #999;
+}
 .help-block .name {
   margin-bottom:10px;
   font-weight: bold;

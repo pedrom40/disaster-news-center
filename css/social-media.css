@@ -54,7 +54,7 @@
 }
 
 .social-media-feed::-webkit-scrollbar {
-  width:6px;
+  width:4px;
 }
 .social-media-feed::-webkit-scrollbar-track {
   background:#ebebeb;
@@ -71,7 +71,7 @@
     overflow-y:scroll;
     overflow-x:hidden;
     height:625px;
-    padding-right:25px;
+    padding-right:35px;
   }
 
 }

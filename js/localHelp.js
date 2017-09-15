@@ -40,15 +40,17 @@ function listLocalHelpInfo (data) {
     }
 
     const template = `
-      <div class="name">${contact[1]}</div>
-      <div class="address">
-        ${addressLine}
-        ${cityLine} ${contact[5]}
+      <div class="contact-container">
+        <div class="name">${contact[1]}</div>
+        <div class="address">
+          ${addressLine}
+          ${cityLine} ${contact[5]}
+        </div>
+        <div class="phone"><a href="tel:+1${contact[6]}">${contact[6]}</a></div>
+        ${emailInfo}
+        ${linkInfo}
+        <div class="message">${contact[9]}</div>
       </div>
-      <div class="phone"><a href="tel:+1${contact[6]}">${contact[6]}</a></div>
-      ${emailInfo}
-      ${linkInfo}
-      <div class="message">${contact[9]}</div>
     `;
 
     $('.js-local-help').append(template);

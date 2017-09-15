@@ -67,3 +67,12 @@
   }
 
 }
+
+/* large monitors */
+@media only screen and (min-width:1366px) {
+
+    .img-slider, .img-container div {
+      height:672px;
+    }
+
+  }
