@@ -1,3 +1,5 @@
+.sass-cache/
 docs/
 img/
 *_notes/
+*.map

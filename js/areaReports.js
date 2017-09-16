@@ -54,23 +54,6 @@ function listAreaReports (data) {
 
 }
 
-function listenForReportSubmissionClicks () {
-
-  $('.js-submit-report-btn').click( event => {
-
-    // show and scroll to form
-    $('.area-report-form').toggle(function () {
-      $('html, body').animate({
-        scrollTop: $('.area-report-form').offset().top
-      }, 1000);
-    });
-
-    // get user info
-    callUserInfoService(fillUserData);
-
-  });
-
-}
 function fillUserData (data) {
 
   $('#user_ip_address').val(data.ip_address);
@@ -84,13 +67,6 @@ function fillUserData (data) {
 
 }
 
-function listenForCloseReportFormClicks () {
-
-  $('.js-form-close-btn').click( event => {
-    $('.area-report-form').toggle();
-  });
-
-}
 function listenForReportSubmissions () {
   $('#areaReportSubmitBtn').click( event => {
 

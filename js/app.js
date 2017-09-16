@@ -13,8 +13,6 @@ function initApp () {
   setupUserSession();
   listenForMenuToggle();
   listenForPreviewClicks();
-  //listenForReportSubmissionClicks();
-  //listenForCloseReportFormClicks();
   listenForReportSubmissions();
   listenForExpandRowClicks();
 
