@@ -7,15 +7,6 @@
   color:black;
 }
 
-.area-reports .modal {
-  left: 40%;
-  width:85%;
-  z-index:999;
-}
-.area-reports .modal h2 {
-  margin:0 0 5px 10px;
-}
-
 .area-report-container, .area-report-container-1, .area-report-container-2, .area-report-container-3 {
   display:inline-block;
   width:100%;
@@ -51,40 +42,8 @@
   padding: 5px 8px;
 }
 
-.area-report-form {
-  width:100%;
-  margin:25px auto;
-  padding: 0 25px;
-  clear:both;
-}
-.area-report-form a {
-  display: block;
-  text-align: right;
-}
-.area-report-form label, .area-report-form input, .area-report-form textarea {
-  width:100%;
-}
-.area-report-form label {
-  font-size:12px;
-  margin-bottom: 5px;
-}
-.area-report-form input, .area-report-form textarea {
-  margin-bottom: 15px;
-  padding:8px;
-}
-.area-report-form textarea {
-  height:150px;
-}
-.area-report-form input[type='button'] {
-  margin-bottom:0;
-}
-
 @media only screen and (min-width:768px) {
 
-  .area-reports .modal {
-    left:30%;
-    width:77%;
-  }
   .area-report-container {
     width:24%;
   }
@@ -110,20 +69,8 @@
 
 @media only screen and (min-width:992px) {
 
-  .area-reports .modal {
-    top:35%;
-  }
   .area-report-container .report {
     height:150px;
-  }
-
-}
-
-@media only screen and (min-width:1280px) {
-
-  .area-reports .modal {
-    left: 34%;
-    width: 65%;
   }
 
 }

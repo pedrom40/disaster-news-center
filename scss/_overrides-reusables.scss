@@ -42,6 +42,30 @@ table, tbody, tr, th, td {
 
 }
 
+form {
+  width:100%;
+  margin:25px auto;
+  padding: 0 25px;
+  clear:both;
+}
+label, input, textarea {
+  width:100%;
+}
+label {
+  font-size:12px;
+  margin-bottom: 5px;
+}
+input, textarea {
+  margin-bottom: 15px;
+  padding:8px;
+}
+textarea {
+  height:150px;
+}
+input[type='button'] {
+  margin-bottom:0;
+}
+
 /* reusables */
 .success, .error {
   margin-bottom:15px;

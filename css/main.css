@@ -85,6 +85,29 @@ table, tbody, tr, th, td {
     padding-bottom: 25px;
     border-bottom: 0.1rem solid #e1e1e1; }
 
+form {
+  width: 100%;
+  margin: 25px auto;
+  padding: 0 25px;
+  clear: both; }
+
+label, input, textarea {
+  width: 100%; }
+
+label {
+  font-size: 12px;
+  margin-bottom: 5px; }
+
+input, textarea {
+  margin-bottom: 15px;
+  padding: 8px; }
+
+textarea {
+  height: 150px; }
+
+input[type='button'] {
+  margin-bottom: 0; }
+
 /* reusables */
 .success, .error {
   margin-bottom: 15px;
@@ -362,14 +385,6 @@ nav {
 .area-reports a {
   color: black; }
 
-.area-reports .modal {
-  left: 40%;
-  width: 85%;
-  z-index: 999; }
-
-.area-reports .modal h2 {
-  margin: 0 0 5px 10px; }
-
 .area-report-container, .area-report-container-1, .area-report-container-2, .area-report-container-3 {
   display: inline-block;
   width: 100%;
@@ -402,38 +417,7 @@ nav {
   display: block;
   padding: 5px 8px; }
 
-.area-report-form {
-  width: 100%;
-  margin: 25px auto;
-  padding: 0 25px;
-  clear: both; }
-
-.area-report-form a {
-  display: block;
-  text-align: right; }
-
-.area-report-form label, .area-report-form input, .area-report-form textarea {
-  width: 100%; }
-
-.area-report-form label {
-  font-size: 12px;
-  margin-bottom: 5px; }
-
-.area-report-form input, .area-report-form textarea {
-  margin-bottom: 15px;
-  padding: 8px; }
-
-.area-report-form textarea {
-  height: 150px; }
-
-.area-report-form input[type='button'] {
-  margin-bottom: 0; }
-
 @media only screen and (min-width: 768px) {
-  .area-reports .modal {
-    left: 30%;
-    width: 77%; }
-
   .area-report-container {
     width: 24%; }
 
@@ -452,15 +436,8 @@ nav {
   .area-report-container-3 .report {
     height: 110px; } }
 @media only screen and (min-width: 992px) {
-  .area-reports .modal {
-    top: 35%; }
-
   .area-report-container .report {
     height: 150px; } }
-@media only screen and (min-width: 1280px) {
-  .area-reports .modal {
-    left: 34%;
-    width: 65%; } }
 .video-player {
   margin-bottom: 30px; }
 
@@ -675,18 +652,19 @@ footer {
 * License: GPLv2
 **/
 .modal {
-  left: 50%;
+  left: 40%;
   margin: -250px 0 0 -32%;
   opacity: 0;
   position: absolute;
   top: -50%;
   visibility: hidden;
-  width: 65%;
+  width: 85%;
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
   transition: all .4s ease-in-out;
   -moz-transition: all .4s ease-in-out;
-  -webkit-transition: all .4s ease-in-out; }
+  -webkit-transition: all .4s ease-in-out;
+  z-index: 999; }
 
 .modal:target {
   opacity: 1;
@@ -703,7 +681,7 @@ footer {
   border-radius: 0 0 5px 5px; }
 
 .modal h2 {
-  margin: 0;
+  margin: 0 0 5px 10px;
   color: #333333; }
 
 .modal .btn {
@@ -740,9 +718,17 @@ footer {
 /* Responsive Options */
 @media screen and (min-width: 768px) {
   .modal {
-    width: 600px;
+    left: 30%;
+    width: 77%;
     margin: -250px 0px 0px -18.2%;
     top: -50%; } }
+@media only screen and (min-width: 992px) {
+  .modal {
+    top: 35%; } }
+@media only screen and (min-width: 1280px) {
+  .modal {
+    left: 34%;
+    width: 65%; } }
 .modalcss-button {
   /* Structure */
   display: inline-block;

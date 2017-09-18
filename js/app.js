@@ -15,7 +15,6 @@ function initApp () {
   listenForPreviewClicks();
   listenForReportSubmissions();
   listenForExpandRowClicks();
-  listenForAdminClicks();
 
   getDisaster('Hurricane Harvey');
 
@@ -77,6 +76,7 @@ function listenForMenuToggle () {
 function listenForExpandRowClicks () {
 
   $('.js-expand-btn').click( event => {
+    event.preventDefault();
 
     if (event.target.text.search('Expand') !== -1) {
 
