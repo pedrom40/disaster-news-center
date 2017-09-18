@@ -1,19 +1,17 @@
 function callUserService (data, callback) {
 
-    const settings = {
-      url: '/cfcs/users.cfc',
-      data: data,
-      dataType: 'json',
-      type: 'GET',
-      success: function(data) {
-        console.log(data);
-      },
-      fail: showAjaxError
-    }
-
-    $.ajax(settings);
-
+  const settings = {
+    url: '/cfcs/users.cfc',
+    data: data,
+    dataType: 'json',
+    type: 'GET',
+    success: callback,
+    fail: showAjaxError
   }
+
+  $.ajax(settings);
+
+}
 function callDisasterService (data, callback) {
 
   const settings = {

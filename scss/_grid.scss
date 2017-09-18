@@ -27,7 +27,7 @@
 }
 
 /* Mobile defaults */
-.col-3, .col-4, .col-6, .col-12 {
+.col-3, .col-4, .col-6, .col-9, .col-12 {
   width: 100%;
 }
 
@@ -43,7 +43,7 @@
     width: 33.33%;
   }
 
-  .col-6 {
+  .col-6, .col-9 {
     width:100%;
   }
 
@@ -64,18 +64,26 @@
     width:50%;
   }
 
+  .col-9 {
+    width:75%;
+  }
+
 }
 
 /* desktops */
 @media only screen and (min-width:1280px) {
 
-  .row {max-width:1280px;}
+  .row {
+    max-width:1280px;
+  }
 
 }
 
 /* large monitors */
 @media only screen and (min-width:1366px) {
 
-  .row {max-width:1366px;}
+  .row {
+    max-width:1366px;
+  }
 
 }

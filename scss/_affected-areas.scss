@@ -2,10 +2,11 @@
   margin-top:25px;
   padding-top:25px;
   border-top:dotted 1px #ccc;
-}
 
-.affected-areas {
-  margin-bottom: 35px;
+  h2 span {
+    display:block;
+    font-size:16px;
+  }
 }
 
 .map-container, #map {
@@ -15,47 +16,60 @@
 }
 
 .help-block {
-  margin-top:35px;
-}
-.contact-container {
-  margin:15px;
-  box-shadow: 2px 2px 5px #999;
-}
-.help-block .name {
-  margin-bottom:10px;
-  font-weight: bold;
-}
-.help-block .address {
-  margin-bottom:10px;
-}
-.help-block .email {
-  margin-bottom:10px;
-}
-.help-block .link {
-  margin-top:10px;
-}
-.help-block .message {
-  margin-top:10px;
-  margin-bottom:35px;
-}
-.help-block .logo {
-  margin:35px 0;
-  padding-bottom: 25px;
   text-align:center;
-  border-bottom:dotted 1px #ccc;
-}
-.help-block a:last-child .logo {
-  border:none;
-}
 
-/* landscape small phone */
-@media only screen and (min-width: 560px) {
+  .logo {
+    display:inline-block;
+    padding:25px;
+    text-align:center;
+    vertical-align:middle;
 
-  .help-info {
-    padding-bottom: 15px;
-  }
-  .help-info .col-6 {
-    width:50%;
+    img {
+      width:150px;
+    }
   }
 
+  a {
+    text-decoration:none;
+  }
+
 }
+
+/* tablets */
+@media only screen and (min-width:768px) {
+
+  .area-information h2 span {
+    float:right;
+    margin-top:10px;
+  }
+
+  .help-block {
+
+    .logo {
+      padding:10px;
+
+      img {
+        width:110px;
+      }
+    }
+
+  }
+
+}
+
+/* desktops */
+@media only screen and (min-width:1024px) {
+
+    .help-block {
+
+      .logo {
+        padding:25px;
+
+        img {
+          width:125px;
+        }
+      }
+
+    }
+
+  }

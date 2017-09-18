@@ -15,6 +15,7 @@ function initApp () {
   listenForPreviewClicks();
   listenForReportSubmissions();
   listenForExpandRowClicks();
+  listenForAdminClicks();
 
   getDisaster('Hurricane Harvey');
 
@@ -23,7 +24,6 @@ function initApp () {
 
   // set timers to recall these functions every 3 minutes
   const getAreaReportsTimer = setInterval(getAreaReports, 180000);
-  const getFacebookPagesTimer = setInterval(getFacebookPages, 180000);
 
 }
 
@@ -52,7 +52,6 @@ function loadDisaster (data) {
   getAreaReports();
   getAffectedAreas();
   loadMap();
-  getLocalHelpInfo();
   getNationalOrganizations();
 
 }

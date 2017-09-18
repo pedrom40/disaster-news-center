@@ -14,6 +14,34 @@ button, input[type='button'] {
   cursor: pointer;
 }
 
+table, tbody, tr, th, td {
+  display:block;
+
+  thead {
+    display:none;
+  }
+
+  td {
+
+    &:first-child {
+      margin-bottom:20px;
+      font-weight:bold;
+    }
+
+    &:nth-child(2), &:nth-child(4) {
+      margin-bottom:10px
+    }
+
+    &:last-child {
+      margin-bottom:25px;
+      padding-bottom:25px;
+      border-bottom:0.1rem solid #e1e1e1;
+    }
+
+  }
+
+}
+
 /* reusables */
 .success, .error {
   margin-bottom:15px;
@@ -102,6 +130,52 @@ li .right-side {
 
 /* tablets */
 @media only screen and (min-width:768px) {
+
+  table {
+    display:table;
+    border-spacing:0;
+    width:100%;
+    margin-bottom:2.5rem;
+
+    thead {
+      display:table-header-group;
+      vertical-align:middle;
+      border-color:inherit;
+    }
+
+    tbody {
+      display:table-row-group;
+      vertical-align:middle;
+      border-color:inherit;
+    }
+
+    tr {
+      display:table-row;
+      vertical-align:inherit;
+      border-color:inherit;
+    }
+
+    td:first-child, th:first-child {
+      margin-bottom:0;
+      padding-left:0;
+    }
+    td, th {
+      display:table-cell;
+      border-bottom:0.1rem solid #e1e1e1;
+      padding:1.2rem 1.5rem;
+      text-align:left;
+      font-size:14px;
+    }
+
+    td:nth-child(2), td:nth-child(4) {
+      margin-bottom:0;
+    }
+
+    td:last-child {
+      margin-bottom:0;
+    }
+
+  }
 
   li .left-side {
     width: 40%;

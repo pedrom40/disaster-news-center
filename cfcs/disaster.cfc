@@ -1,4 +1,4 @@
-<cfcomponent>
+<cfcomponent extends="config">
 
   <cffunction name="getDisaster" access="remote" returnType="string" returnFormat="json">
     <cfargument name="name" type="string" required="yes">
@@ -16,6 +16,18 @@
     <cfset disasterInfo[4] = #disasters.center_lon#>
 
     <cfreturn #serializeJSON(disasterInfo)#>
+  </cffunction>
+
+  <cffunction name="getDisasterNameFromID" access="private" returnType="string">
+    <cfargument name="disasterID" type="numeric" required="yes">
+
+    <cfquery name="disaster" datasource="#getDS()#">
+      SELECT name
+      FROM disasters
+      WHERE id = <cfqueryparam cfsqltype="cf_sql_integer" maxLength="10" value="#arguments.disasterID#">
+    </cfquery>
+
+    <cfreturn '#disaster.name#'>
   </cffunction>
 
   <cffunction name="getMapCenter" access="remote" returnType="string" returnFormat="json">
@@ -103,16 +115,18 @@
     <cfargument name="disasterID" type="numeric" required="yes">
 
     <cfquery name="affected_areas" datasource="#getDS()#">
-      SELECT location, est_population
+      SELECT city, state, est_population
       FROM affected_areas
       WHERE disaster_id = <cfqueryparam cfsqltype="cf_sql_integer" maxLength="10" value="#arguments.disasterID#">
+      ORDER BY state, city
     </cfquery>
 
     <cfset affectedAreas = ArrayNew(2)>
 
     <cfoutput query="affected_areas">
-      <cfset affectedAreas[#currentrow#][1] = #affected_areas.location#>
-      <cfset affectedAreas[#currentrow#][2] = #affected_areas.est_population#>
+      <cfset affectedAreas[#currentrow#][1] = #affected_areas.city#>
+      <cfset affectedAreas[#currentrow#][2] = #affected_areas.state#>
+      <cfset affectedAreas[#currentrow#][3] = #affected_areas.est_population#>
     </cfoutput>
 
     <cfreturn #serializeJSON(affectedAreas)#>
@@ -122,7 +136,7 @@
     <cfargument name="disasterID" type="numeric" required="yes">
 
     <cfquery name="affected_areas" datasource="#getDS()#">
-      SELECT center_lat, center_lon, location
+      SELECT center_lat, center_lon, CONCAT(city, ', ', state) AS location
       FROM affected_areas
       WHERE disaster_id = <cfqueryparam cfsqltype="cf_sql_integer" maxLength="10" value="#arguments.disasterID#">
     </cfquery>
@@ -136,33 +150,6 @@
     </cfoutput>
 
     <cfreturn #serializeJSON(affectedAreas)#>
-  </cffunction>
-
-  <cffunction name="getLocalHelpInfo" access="remote" returnType="string" returnFormat="json">
-    <cfargument name="disasterID" type="numeric" required="yes">
-
-    <cfquery name="local_help" datasource="#getDS()#">
-      SELECT type, name, address, city, state, zip, phone, email, link, msg
-      FROM local_help_information
-      WHERE disaster_id = <cfqueryparam cfsqltype="cf_sql_integer" maxLength="10" value="#arguments.disasterID#">
-    </cfquery>
-
-    <cfset localHelp = ArrayNew(2)>
-
-    <cfoutput query="local_help">
-      <cfset localHelp[#currentrow#][1] = #local_help.type#>
-      <cfset localHelp[#currentrow#][2] = #local_help.name#>
-      <cfset localHelp[#currentrow#][3] = #local_help.address#>
-      <cfset localHelp[#currentrow#][4] = #local_help.city#>
-      <cfset localHelp[#currentrow#][5] = #local_help.state#>
-      <cfset localHelp[#currentrow#][6] = #local_help.zip#>
-      <cfset localHelp[#currentrow#][7] = #local_help.phone#>
-      <cfset localHelp[#currentrow#][8] = #local_help.email#>
-      <cfset localHelp[#currentrow#][9] = #local_help.link#>
-      <cfset localHelp[#currentrow#][10] = #local_help.msg#>
-    </cfoutput>
-
-    <cfreturn #serializeJSON(localHelp)#>
   </cffunction>
 
   <cffunction name="getNationalOrganizations" access="remote" returnType="string" returnFormat="json">
@@ -292,36 +279,6 @@
     </cftry>
 
     <cfreturn #serializeJSON(response)#>
-  </cffunction>
-
-  <cffunction name="getDS" access="private" returnType="string">
-    <cfreturn 'dnc'>
-  </cffunction>
-
-  <cffunction name="getDisasterNameFromID" access="private" returnType="string">
-    <cfargument name="disasterID" type="numeric" required="yes">
-
-    <cfquery name="disaster" datasource="#getDS()#">
-      SELECT name
-      FROM disasters
-      WHERE id = <cfqueryparam cfsqltype="cf_sql_integer" maxLength="10" value="#arguments.disasterID#">
-    </cfquery>
-
-    <cfreturn '#disaster.name#'>
-  </cffunction>
-
-  <cffunction name="sendEmail" access="private">
-    <cfargument name="to" type="string" required="yes">
-    <cfargument name="from" type="string" required="yes">
-    <cfargument name="subject" type="string" required="yes">
-    <cfargument name="msg" type="string" required="yes">
-
-    <cfmail to="#arguments.to#" from="#arguments.from#" subject="#arguments.subject#" type="html">
-      #arguments.msg#
-
-      <cfdump var="#cgi#">
-      <cfdump var="#variables#">
-    </cfmail>
   </cffunction>
 
 </cfcomponent>

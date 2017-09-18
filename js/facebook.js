@@ -88,11 +88,17 @@ function listFacebookPages (data) {
       pagePhone = `Phone: ${page.phone}<br>`;
     }
 
+    // setup pic
+    var pagePic = '';
+    if ('cover' in page) {
+      pagePic = `<div class="post-picture" style="background-image:url(${page.cover.source})"></div>`;
+    }
+
     const template = `
       <li>
         <a href="${page.link}" target="_blank">
           <div class="post-story">${page.name}</div>
-          <div class="post-picture" style="background-image:url(${page.cover.source})"></div>
+          ${pagePic}
           <div class="post-description">
             ${pageAbout}
             ${pagePhone}

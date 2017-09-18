@@ -1,5 +1,8 @@
 function getAreaReports () {
 
+  // get user info
+  callUserInfoService(fillUserData);
+
   // call getAreaReports service
   var qData = {
     method:'getAreaReports',
@@ -193,10 +196,6 @@ function areaReportResponse (data) {
       .addClass('success')
       .html('Your report has been submitted and is under review. It will appear on the site immediately upon approval.')
       .show();
-
-    $('html, body').animate({
-      scrollTop: $('.area-reports').offset().top
-    }, 1000);
 
   }
   else {

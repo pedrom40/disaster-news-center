@@ -68,6 +68,23 @@
 
 }
 
+/* tablets */
+@media only screen and (min-width:768px) {
+
+  .video-list li {
+    min-height:70px;
+
+    .description {
+      font-size:10px;
+    }
+    .source a.channel {
+      font-size:8px;
+    }
+
+  }
+
+}
+
 /* landscape tablets */
 @media only screen and (min-width:1024px) {
 
