@@ -26,39 +26,6 @@ function initApp () {
 
 }
 
-// starts everything by returning disaster record data
-function getDisaster (name) {
-
-  // call disaster service
-  var qData = {
-    method: 'getDisaster',
-    name: name
-  };
-  callDisasterService(qData, loadDisaster);
-
-}
-
-function loadDisaster (data) {
-
-  // update disaster info
-  disasterInfo = data;
-  disasterID = data[0];
-  disasterName = data[1];
-
-  setDisasterTitle();
-  getLocalNewsYouTubeChannels();
-  getNationalVideoChannels();
-  getAreaReports();
-  getAffectedAreas();
-  loadMap();
-  getNationalOrganizations();
-
-}
-
-function setDisasterTitle () {
-  $('h1 header span').html(disasterName);
-}
-
 function listenForMenuToggle () {
 
   $('.js-nav-toggle').click( event => {

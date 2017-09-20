@@ -46,6 +46,23 @@
     <cfreturn #serializeJSON(mapCenter)#>
   </cffunction>
 
+  <cffunction name="getDisasterImages" access="remote" returnType="string" returnFormat="json">
+    <cfargument name="disasterID" type="numeric" required="yes">
+
+    <cfquery name="images" datasource="#getDS()#">
+      SELECT img_src
+      FROM disaster_images
+      WHERE disaster_id = <cfqueryparam cfsqltype="cf_sql_integer" maxLength="10" value="#arguments.disasterID#">
+    </cfquery>
+
+    <cfset disasterImages = ArrayNew(1)>
+    <cfoutput query="images">
+      <cfset disasterImages[#currentrow#] = #images.img_src#>
+    </cfoutput>
+
+    <cfreturn #serializeJSON(disasterImages)#>
+  </cffunction>
+
   <cffunction name="getLocalYouTubeChannelIds" access="remote" returnType="string" returnFormat="json">
     <cfargument name="disasterID" type="numeric" required="yes">
 
