@@ -1,10 +1,15 @@
-// starts everything by returning disaster record data
-function getDisaster (name) {
+function getAllDisasters () {
+  var qData = {
+    method: 'getAllDisasters'
+  };
+  callDisasterService(qData, loadAllDisasters);
+}
+function getDisaster (disasterID) {
 
   // call disaster service
   var qData = {
     method: 'getDisaster',
-    name: name
+    id: disasterID
   };
   callDisasterService(qData, loadDisaster);
 
@@ -17,6 +22,15 @@ function getDisasterImages () {
   callDisasterService(qData, loadDisasterImages);
 }
 
+function loadAllDisasters (data) {
+
+  data.map( disaster => {
+    $('.js-disaster-names').append(`<option value="${disaster[0]}">${disaster[1]}</option>`);
+  });
+
+  fadeMainSelectMenu();
+
+}
 function loadDisaster (data) {
 
   // update disaster info
@@ -24,7 +38,6 @@ function loadDisaster (data) {
   disasterID = data[0];
   disasterName = data[1];
 
-  setDisasterTitle();
   getDisasterImages();
   getLocalNewsYouTubeChannels();
   getNationalVideoChannels();
@@ -61,6 +74,7 @@ function loadDisasterImages (data) {
 
 }
 
-function setDisasterTitle () {
-  $('h1 header span').html(disasterName);
+function fadeMainSelectMenu () {
+  $('.js-disaster-names').addClass('bgAnimated');
+  $('.js-disaster-names').addClass('darkSelectMenu');
 }

@@ -1,12 +1,12 @@
 <cfcomponent extends="config">
 
   <cffunction name="getDisaster" access="remote" returnType="string" returnFormat="json">
-    <cfargument name="name" type="string" required="yes">
+    <cfargument name="id" type="numeric" required="yes">
 
     <cfquery name="disasters" datasource="#getDS()#">
       SELECT id, name, center_lat, center_lon
       FROM disasters
-      WHERE name = <cfqueryparam cfsqltype="cf_sql_varchar" maxLength="75" value="#arguments.name#">
+      WHERE id = <cfqueryparam cfsqltype="cf_sql_varchar" maxLength="75" value="#arguments.id#">
     </cfquery>
 
     <cfset disasterInfo = ArrayNew(1)>
@@ -16,6 +16,21 @@
     <cfset disasterInfo[4] = #disasters.center_lon#>
 
     <cfreturn #serializeJSON(disasterInfo)#>
+  </cffunction>
+
+  <cffunction name="getAllDisasters" access="remote" returnType="string" returnFormat="json">
+    <cfquery name="disastersQuery" datasource="#getDS()#">
+      SELECT id, name
+      FROM disasters
+    </cfquery>
+
+    <cfset disasters = ArrayNew(2)>
+    <cfoutput query="disastersQuery">
+      <cfset disasters[#currentrow#][1] = #disastersQuery.id#>
+      <cfset disasters[#currentrow#][2] = #disastersQuery.name#>
+    </cfoutput>
+
+    <cfreturn #serializeJSON(disasters)#>
   </cffunction>
 
   <cffunction name="getDisasterNameFromID" access="private" returnType="string">

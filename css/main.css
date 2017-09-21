@@ -131,10 +131,9 @@ input[type='button'] {
   list-style: none;
   margin: 0;
   padding: 0; }
-
-.unstyle-list li {
-  display: inline-block;
-  vertical-align: middle; }
+  .unstyle-list li {
+    display: inline-block;
+    vertical-align: middle; }
 
 li .left-side, li .right-side {
   width: 46%;
@@ -221,32 +220,80 @@ li .right-side {
     text-decoration: none;
     text-align: center;
     color: #999; }
-
-  .expand-feed-btn:hover {
-    color: #333; }
-
-  .expand-feed-btn i {
-    padding: 0 15px; } }
+    .expand-feed-btn:hover {
+      color: #333; }
+    .expand-feed-btn i {
+      padding: 0 15px; } }
 .header {
-  background: #00b9d7; }
+  background: black; }
+  .header h1 {
+    font-size: 16px;
+    margin-bottom: 20px; }
+    .header h1 span {
+      display: block;
+      font-size: 34px;
+      line-height: 30px; }
 
-.header h1 {
-  font-size: 16px;
-  margin-bottom: 20px; }
+.darkSelectMenu {
+  color: white;
+  background: black;
+  border: none; }
 
-.header h1 span {
-  display: block;
-  font-size: 34px;
-  line-height: 30px; }
+@-webkit-keyframes fadeIt {
+  0% {
+    color: #000;
+    background-color: #fff; }
+  50% {
+    color: #7f7f7f;
+    background-color: #7f7f7f; }
+  100% {
+    color: #fff;
+    background-color: #000; } }
+@-moz-keyframes fadeIt {
+  0% {
+    color: #000;
+    background-color: #fff; }
+  50% {
+    color: #7f7f7f;
+    color: #7f7f7f;
+    background-color: #7f7f7f; }
+  100% {
+    color: #fff;
+    background-color: #000; } }
+@-o-keyframes fadeIt {
+  0% {
+    color: #000;
+    background-color: #fff; }
+  50% {
+    color: #7f7f7f;
+    background-color: #7f7f7f; }
+  100% {
+    color: #fff;
+    background-color: #000; } }
+@keyframes fadeIt {
+  0% {
+    color: #000;
+    background-color: #fff; }
+  50% {
+    color: #7f7f7f;
+    background-color: #7f7f7f; }
+  100% {
+    color: #fff;
+    background-color: #000; } }
+.bgAnimated {
+  background-image: none !important;
+  -webkit-animation: fadeIt 5s ease-in-out;
+  -moz-animation: fadeIt 5s ease-in-out;
+  -o-animation: fadeIt 5s ease-in-out;
+  animation: fadeIt 5s ease-in-out; }
 
 /* landscape small phone */
 @media only screen and (min-width: 568px) {
   .header h1 {
     font-size: 26px; }
-
-  .header h1 span {
-    display: initial;
-    font-size: 26px; } }
+    .header h1 span {
+      display: initial;
+      font-size: 26px; } }
 /* tablets */
 @media only screen and (min-width: 768px) {
   .header h1 {
@@ -254,17 +301,15 @@ li .right-side {
     top: -10px;
     font-size: 20px;
     color: white; }
-
-  .header h1 span {
-    font-size: 20px; } }
+    .header h1 span {
+      font-size: 20px; } }
 /* desktops */
 @media only screen and (min-width: 1024px) {
   .header h1 {
     top: -9px;
     font-size: 28px; }
-
-  .header h1 span {
-    font-size: 28px; } }
+    .header h1 span {
+      font-size: 28px; } }
 .nav-bar {
   padding: 10px 0;
   text-align: right;
@@ -380,10 +425,9 @@ nav {
     height: 672px; } }
 .area-reports {
   margin-bottom: 25px;
-  background: #dadada; }
-
-.area-reports a {
-  color: black; }
+  background: #00b9d7; }
+  .area-reports a {
+    color: black; }
 
 .area-report-container, .area-report-container-1, .area-report-container-2, .area-report-container-3 {
   display: inline-block;
@@ -412,29 +456,25 @@ nav {
 
 .areaReportErrorMsg {
   padding: 5px; }
-
-.areaReportErrorMsg li {
-  display: block;
-  padding: 5px 8px; }
+  .areaReportErrorMsg li {
+    display: block;
+    padding: 5px 8px; }
 
 @media only screen and (min-width: 768px) {
   .area-report-container {
     width: 24%; }
-
-  .area-report-container .report {
-    height: 255px; }
+    .area-report-container .report {
+      height: 255px; }
 
   .area-report-container-2 {
     width: 49%; }
-
-  .area-report-container-2 .report {
-    height: 70px; }
+    .area-report-container-2 .report {
+      height: 70px; }
 
   .area-report-container-3 {
     width: 32%; }
-
-  .area-report-container-3 .report {
-    height: 110px; } }
+    .area-report-container-3 .report {
+      height: 110px; } }
 @media only screen and (min-width: 992px) {
   .area-report-container .report {
     height: 150px; } }
@@ -674,6 +714,9 @@ footer {
 .modal .header, .modal .footer {
   border-bottom: 1px solid #e7e7e7;
   border-radius: 5px 5px 0 0; }
+
+.modal .header {
+  background: #00b9d7; }
 
 .modal .footer {
   border: none;

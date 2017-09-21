@@ -28,6 +28,9 @@
 	border-bottom: 1px solid #e7e7e7;
 	border-radius: 5px 5px 0 0;
 }
+.modal .header {
+  background:$primaryColor;
+}
 .modal .footer {
 	border: none;
 	border-top: 1px solid #e7e7e7;

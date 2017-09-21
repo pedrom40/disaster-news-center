@@ -16,7 +16,8 @@ function initApp () {
   listenForReportSubmissions();
   listenForExpandRowClicks();
 
-  getDisaster('Hurricane Harvey');
+  getDisaster(1);
+  getAllDisasters();
 
   loadFacebookData();
   loadTwitterWidget();

@@ -1,10 +1,11 @@
 .area-reports {
   margin-bottom:25px;
-  background:#dadada;
-}
+  background:$primaryColor;
 
-.area-reports a {
-  color:black;
+  a {
+    color:black;
+  }
+
 }
 
 .area-report-container, .area-report-container-1, .area-report-container-2, .area-report-container-3 {
@@ -36,34 +37,43 @@
 
 .areaReportErrorMsg {
   padding:5px;
-}
-.areaReportErrorMsg li {
-  display: block;
-  padding: 5px 8px;
+
+  li {
+    display: block;
+    padding: 5px 8px;
+  }
+
 }
 
 @media only screen and (min-width:768px) {
 
   .area-report-container {
     width:24%;
-  }
-  .area-report-container .report {
-    height:255px;
+
+    .report {
+      height:255px;
+    }
+
   }
 
   .area-report-container-2 {
     width:49%;
-  }
-  .area-report-container-2 .report {
-    height:70px;
+
+    .report {
+      height:70px;
+    }
+
   }
 
   .area-report-container-3 {
     width:32%;
+
+    .report {
+      height:110px;
+    }
+
   }
-  .area-report-container-3 .report {
-    height:110px;
-  }
+
 
 }
 

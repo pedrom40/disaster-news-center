@@ -91,10 +91,12 @@ input[type='button'] {
   list-style:none;
   margin:0;
   padding:0;
-}
-.unstyle-list li {
-  display:inline-block;
-  vertical-align:middle;
+
+  li {
+    display:inline-block;
+    vertical-align:middle;
+  }
+
 }
 
 li .left-side, li .right-side {
@@ -212,12 +214,14 @@ li .right-side {
     text-decoration:none;
     text-align:center;
     color:#999;
-  }
-  .expand-feed-btn:hover {
-    color:#333;
-  }
-  .expand-feed-btn i {
-    padding:0 15px;
+
+    &:hover {
+      color:#333;
+    }
+
+    i {
+      padding:0 15px;
+    }
   }
 
 }

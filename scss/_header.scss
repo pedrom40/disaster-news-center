@@ -1,25 +1,62 @@
 .header {
-  background:#00b9d7;
+  background:black;
+
+  h1 {
+    font-size:16px;
+    margin-bottom:20px;
+
+    span {
+      display:block;
+      font-size:34px;
+      line-height:30px;
+    }
+  }
 }
-.header h1 {
-  font-size:16px;
-  margin-bottom: 20px;
+
+.darkSelectMenu {
+  color:white;
+  background:black;
+  border:none;
 }
-.header h1 span {
-  display: block;
-  font-size: 34px;
-  line-height: 30px;
+
+@-webkit-keyframes fadeIt {
+  0%   {color:#000; background-color:#fff;}
+  50%  {color:#7f7f7f; background-color:#7f7f7f;}
+  100% {color:#fff; background-color:#000;}
+}
+@-moz-keyframes fadeIt {
+  0%   {color:#000; background-color:#fff;}
+  50%  {color:#7f7f7f; color:#7f7f7f; background-color:#7f7f7f;}
+  100% {color:#fff; background-color:#000;}
+}
+@-o-keyframes fadeIt {
+  0%   {color:#000; background-color:#fff;}
+  50%  {color:#7f7f7f; background-color:#7f7f7f;}
+  100% {color:#fff; background-color:#000;}
+}
+@keyframes fadeIt {
+  0%   {color:#000; background-color:#fff;}
+  50%  {color:#7f7f7f; background-color:#7f7f7f;}
+  100% {color:#fff; background-color:#000;}
+}
+.bgAnimated {
+  background-image:none !important;
+  -webkit-animation:fadeIt 5s ease-in-out;
+  -moz-animation:fadeIt 5s ease-in-out;
+  -o-animation:fadeIt 5s ease-in-out;
+  animation:fadeIt 5s ease-in-out;
 }
 
 /* landscape small phone */
 @media only screen and (min-width:568px) {
 
   .header h1 {
-    font-size: 26px;
-  }
-  .header h1 span {
-    display: initial;
-    font-size: 26px;
+    font-size:26px;
+
+    span {
+      display:initial;
+      font-size:26px;
+    }
   }
 
 }
@@ -32,9 +69,10 @@
     top: -10px;
     font-size: 20px;
     color: white;
-  }
-  .header h1 span {
-    font-size: 20px;
+
+    span {
+      font-size: 20px;
+    }
   }
 
 }
@@ -45,9 +83,10 @@
   .header h1 {
     top:-9px;
     font-size:28px;
-  }
-  .header h1 span {
-    font-size:28px;
+
+    span {
+      font-size:28px;
+    }
   }
 
 }
