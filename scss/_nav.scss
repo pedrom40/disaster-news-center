@@ -1,4 +1,5 @@
 .nav-bar {
+  height:40px;
   padding:10px 0;
   text-align:right;
   background:black;
@@ -7,23 +8,32 @@ nav {
   color:white;
 }
 .nav {
-  display: none;
-  padding-bottom:10px;
-}
-.nav li {
+  display:none;
+  position:absolute;
+  top:40px;
+  left:0px;
   width:100%;
-  text-align: left;
-  padding:10px 20px;
-}
-.nav li a {
-  display: block;
-  padding-bottom: 5px;
-  color: white;
-  text-decoration: none;
-  border-bottom: dotted 1px #999;
-}
-.nav li a:hover {
-  color:#ccc;
+  padding:10px 0;
+  background:#333;
+  z-index:1000;
+
+  li {
+    width:100%;
+    text-align:left;
+    padding:10px 20px;
+
+    a {
+      display:block;
+      padding-bottom:5px;
+      color:white;
+      text-decoration:none;
+      border-bottom:dotted 1px #999;
+
+      &:hover {
+        color:#ccc;
+      }
+    }
+  }
 }
 
 /* tablets */
@@ -37,15 +47,19 @@ nav {
   }
   .nav {
     display: block;
-    padding-bottom: 0;
-  }
-  .nav li {
-    padding:0 0 0 16px;
-    width: initial;
-    font-size: 14px;
-  }
-  .nav li a {
-    border:none;
+    position:static;
+    padding:0;
+    background-color:transparent;
+
+    li {
+      padding:0 0 0 16px;
+      width: initial;
+      font-size: 14px;
+
+      a {
+        border:none;
+      }
+    }
   }
 
 }
@@ -58,9 +72,10 @@ nav {
   }
   .nav {
     margin-top:12px;
-  }
-  .nav li {
-    padding-left:40px;
+
+    li {
+      padding-left:40px;
+    }
   }
 
 }

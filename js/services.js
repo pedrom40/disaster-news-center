@@ -1,6 +1,6 @@
 function callUserService (data, callback) {
 
-  const settings = {
+  var settings = {
     url: '/cfcs/users.cfc',
     data: data,
     dataType: 'json',
@@ -14,7 +14,7 @@ function callUserService (data, callback) {
 }
 function callDisasterService (data, callback) {
 
-  const settings = {
+  var settings = {
     url: '/cfcs/disaster.cfc',
     data: data,
     dataType: 'json',
@@ -28,7 +28,7 @@ function callDisasterService (data, callback) {
 }
 function callUserInfoService (callback) {
 
-  const settings = {
+  var settings = {
     url:'//ipfind.co/me',
     data:{
       auth:'24b87b97-a038-4552-90ad-a6f02489b5a2'

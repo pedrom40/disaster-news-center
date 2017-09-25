@@ -48,7 +48,7 @@
           <h1>
             <header role="banner">
               Disaster News Center:
-              <select class="js-disaster-names"></select>
+              <select class="js-disaster-names"></select> <i id="selectDownArrow" class="fa fa-caret-down" aria-hidden="true"></i>
             </header>
           </h1>
         </div>
@@ -117,7 +117,12 @@
 
           <h2 class="twitter-header"><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</h2>
           <div class="loader js-twitter-loader"></div>
-          <div class="social-media-feed js-twitter-feed"></div>
+          <div id="harveyTwitterWidgetContainer" class="social-media-feed js-twitter-feed">
+            <a class="twitter-timeline" href="https://twitter.com/hashtag/HurricaneHarvey}" data-widget-id="905814717444349952">#HurricaneHarvey Tweets</a>
+          </div>
+          <div id="irmaTwitterWidgetContainer" class="social-media-feed js-twitter-feed" style="display:none">
+            <a class="twitter-timeline" href="https://twitter.com/hashtag/HurricaneIrma" data-widget-id="912051277890248704">#HurricaneIrma Tweets</a>
+          </div>
 
         </div>
       </div>
@@ -267,6 +272,7 @@
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://use.fontawesome.com/5c109d0058.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCPx4l2nrrFHA49MEKHGP4dicCPDfIT7g" async defer></script>
+  <script src="https://platform.twitter.com/widgets.js"></script>
   <script src="/js/app.js" type="text/javascript"></script>
   <script src="/js/disaster.js" type="text/javascript"></script>
   <script src="/js/youtube.js" type="text/javascript"></script>

@@ -15,7 +15,7 @@ function getNationalOrganizations () {
     // loop thru reports
     data.map( org => {
 
-      const template = `
+      var template = `
         <a href="${org[2]}" target="_blank">
           <div class="logo"><img src="/img/${org[1]}" alt="${org[0]} Logo"></div>
         </a>

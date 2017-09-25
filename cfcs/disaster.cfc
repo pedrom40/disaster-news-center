@@ -22,6 +22,7 @@
     <cfquery name="disastersQuery" datasource="#getDS()#">
       SELECT id, name
       FROM disasters
+      WHERE active = <cfqueryparam cfsqltype="cf_sql_integer" maxLength="1" value="1">
     </cfquery>
 
     <cfset disasters = ArrayNew(2)>

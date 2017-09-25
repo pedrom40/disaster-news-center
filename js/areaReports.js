@@ -36,11 +36,11 @@ function listAreaReports (data) {
       }
 
       // setup date and time display
-      const reportDate = new Date(report[0]);
-      const dateString = setupDateString(reportDate);
-      const timeString = setupTimeString(reportDate);
+      var reportDate = new Date(report[0]);
+      var dateString = setupDateString(reportDate);
+      var timeString = setupTimeString(reportDate);
 
-      const template = `
+      var template = `
         <div class="${containterClassName}">
           <div class="date">${dateString} @ ${timeString}</div>
           <div class="report">${report[1]}</div>
@@ -73,7 +73,7 @@ function fillUserData (data) {
 function listenForReportSubmissions () {
   $('#areaReportSubmitBtn').click( event => {
 
-    const result = validatAreaReportData();
+    var result = validatAreaReportData();
 
     if (result.length === 0) {
       submitAreaReportData();
@@ -145,7 +145,7 @@ function validatAreaReportData () {
   if (error) {
 
     errorMsg.map( msg => {
-      const template = `<li>${msg}</li>`;
+      var template = `<li>${msg}</li>`;
       $('.areaReportErrorMsg').append(template);
     });
 
@@ -160,7 +160,7 @@ function validatAreaReportData () {
 }
 function submitAreaReportData () {
 
-  const qData = {
+  var qData = {
     method: 'saveAreaReport',
     disasterId: disasterID,
     reportedBy: $('#reported_by').val(),

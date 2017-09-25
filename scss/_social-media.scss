@@ -7,53 +7,63 @@
 .twitter-header {
   color:#1DA1F2;
 }
-.social-media-posts li {
-  width:100%;
-  padding:15px 0 25px 0;
-  border-bottom:dotted 1px #ebebeb;
 
-  &:first-child {
-    padding-top:0;
-  }
-  &:first-child .post-story {
-    margin-top:0;
+.social-media-posts {
+
+  li {
+    width:100%;
+    padding:15px 0 25px 0;
+    border-bottom:dotted 1px #ebebeb;
+
+    &:first-child {
+      padding-top:0;
+    }
+    &:first-child .post-story {
+      margin-top:0;
+    }
+
+    a {
+      text-decoration: none;
+      color:#252525;
+    }
+
+    img {
+      width:100%;
+    }
   }
 
-  a {
-    text-decoration: none;
-    color:#252525;
+  .post-story {
+    margin:10px 0;
+    font-weight:bold;
   }
-}
 
-.social-media-posts .post-story {
-  margin:10px 0;
-  font-weight:bold;
-}
-.social-media-posts .post-name {
-  margin-bottom:15px;
-  clear:both;
-}
-.social-media-posts .post-message {
-  margin-bottom:10px;
-  font-style:italic;
-}
-.social-media-posts .post-picture {
-  float:left;
-  width:38%;
-  height:85px;
-  overflow: hidden;
-  border-radius: 8px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-.social-media-posts .post-description {
-  float:right;
-  width:58%;
-  font-size:12px;
-}
-.social-media-posts li img {
-  width:100%;
+  .post-name {
+    margin-bottom:15px;
+    clear:both;
+  }
+
+  .post-message {
+    margin-bottom:10px;
+    font-style:italic;
+  }
+
+  .post-picture {
+    float:left;
+    width:38%;
+    height:85px;
+    overflow: hidden;
+    border-radius: 8px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .post-description {
+    float:right;
+    width:58%;
+    font-size:12px;
+    overflow:hidden;
+  }
 }
 
 .social-media-feed::-webkit-scrollbar {

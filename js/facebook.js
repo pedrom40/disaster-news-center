@@ -94,7 +94,7 @@ function listFacebookPages (data) {
       pagePic = `<div class="post-picture" style="background-image:url(${page.cover.source})"></div>`;
     }
 
-    const template = `
+    var template = `
       <li>
         <a href="${page.link}" target="_blank">
           <div class="post-story">${page.name}</div>
@@ -117,7 +117,7 @@ function listFacebookPages (data) {
 
 function callFacebookPageSearchApi (callback) {
 
-  const settings = {
+  var settings = {
     url: `https://graph.facebook.com/search/`,
     data: {
       access_token: facebookAccessToken,

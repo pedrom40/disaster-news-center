@@ -4,34 +4,40 @@
 .video-list {
   display: inline-block;
   padding:10px 0;
-}
-.video-list li {
-  width:100%;
-  min-height:100px;
-  margin-bottom:20px;
-}
-.video-list li a {
-  color:#252525;
-  text-decoration:none;
-}
-.video-list li .thumb img {
-  width:100%;
-  border-radius: 8px;
-}
-.video-list li .description {
-  font-size:14px;
-}
-.video-list li .source {
-  margin-top:10px;
-  color:white;
-  border-radius: 6px;
-  background:#ff0000;
-}
-.video-list li .source a.channel {
-  display: block;
-  padding: 5px 7px;
-  color: white;
-  font-size: 10px;
+
+  li {
+    width:100%;
+    min-height:100px;
+    margin-bottom:20px;
+
+    a {
+      color:#252525;
+      text-decoration:none;
+    }
+
+    .thumb img {
+      width:100%;
+      border-radius: 8px;
+    }
+
+    .description {
+      font-size:14px;
+    }
+
+    .source {
+      margin-top:10px;
+      color:white;
+      border-radius: 6px;
+      background:#ff0000;
+
+      a.channel {
+        display: block;
+        padding: 5px 7px;
+        color: white;
+        font-size: 10px;
+      }
+    }
+  }
 }
 
 .iframe-container {
@@ -41,13 +47,14 @@
   height:0;
   overflow:hidden;
   border-radius:8px;
-}
-.iframe-container iframe {
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
+
+  iframe {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+  }
 }
 
 /* landscape small phone */

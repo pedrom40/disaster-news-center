@@ -20,10 +20,10 @@ function initApp () {
   getAllDisasters();
 
   loadFacebookData();
-  loadTwitterWidget();
+  loadHarveyTwitterWidget();
 
   // set timers to recall these functions every 3 minutes
-  const getAreaReportsTimer = setInterval(getAreaReports, 180000);
+  //var getAreaReportsTimer = setInterval(getAreaReports, 180000);
 
 }
 

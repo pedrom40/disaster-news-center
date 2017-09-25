@@ -1,22 +1,25 @@
 .header {
+  height:0;
+  color:white;
   background:black;
 
   h1 {
-    font-size:16px;
-    margin-bottom:20px;
-
-    span {
-      display:block;
-      font-size:34px;
-      line-height:30px;
-    }
+    position:absolute;
+    top:-2px;
+    left:12px;
+    font-size:14px;
   }
 }
 
 .darkSelectMenu {
+  padding-right:35px;
   color:white;
   background:black;
   border:none;
+  -webkit-appearance:none;
+}
+#selectDownArrow {
+  margin-left:-30px;
 }
 
 @-webkit-keyframes fadeIt {
@@ -47,31 +50,16 @@
   animation:fadeIt 5s ease-in-out;
 }
 
-/* landscape small phone */
-@media only screen and (min-width:568px) {
-
-  .header h1 {
-    font-size:26px;
-
-    span {
-      display:initial;
-      font-size:26px;
-    }
-  }
-
-}
-
 /* tablets */
 @media only screen and (min-width:768px) {
 
-  .header h1 {
-    position: absolute;
-    top: -10px;
-    font-size: 20px;
-    color: white;
+  .header {
+    height:initial;
 
-    span {
-      font-size: 20px;
+    h1 {
+      position:absolute;
+      top:-10px;
+      font-size:20px;
     }
   }
 

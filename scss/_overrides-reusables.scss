@@ -65,6 +65,9 @@ textarea {
 input[type='button'] {
   margin-bottom:0;
 }
+select:hover, #selectDownArrow:hover {
+  cursor:pointer;
+}
 
 /* reusables */
 .success, .error {

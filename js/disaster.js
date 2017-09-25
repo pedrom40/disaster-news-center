@@ -38,6 +38,7 @@ function loadDisaster (data) {
   disasterID = data[0];
   disasterName = data[1];
 
+  listenForDisasterChange();
   getDisasterImages();
   getLocalNewsYouTubeChannels();
   getNationalVideoChannels();
@@ -45,6 +46,9 @@ function loadDisaster (data) {
   getAffectedAreas();
   loadMap();
   getNationalOrganizations();
+
+  getFacebookPages();
+  updateTwitterWidget();
 
 }
 function loadDisasterImages (data) {
@@ -77,4 +81,12 @@ function loadDisasterImages (data) {
 function fadeMainSelectMenu () {
   $('.js-disaster-names').addClass('bgAnimated');
   $('.js-disaster-names').addClass('darkSelectMenu');
+}
+
+function listenForDisasterChange () {
+
+  $('.js-disaster-names').change( event => {
+    getDisaster($(event.target).val());
+  });
+
 }

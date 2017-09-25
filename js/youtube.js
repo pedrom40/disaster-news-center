@@ -12,6 +12,9 @@ function getLocalNewsYouTubeChannels () {
 // gets local videos from channel ids
 function getLocalVideos (data) {
 
+  // start fresh
+  $('.js-local-news-video-list').empty();
+
   data.map( (source, index) => {
 
     // take the first local video for featured video
@@ -39,6 +42,9 @@ function getNationalVideoChannels () {
 }
 
 function getNationalVideos (data) {
+
+  // start fresh
+  $('.js-national-news-video-list').empty();
 
   data.map( source => {
     getNationalNewsVideoFromSource(source[0], source[1]);
@@ -68,7 +74,7 @@ function setMainVideo (data) {
   $('.js-main-video').empty();
 
   // set template
-  const template = `
+  var template = `
     <div class="iframe-container">
       <iframe width="320" height="180" title="Featured Video" src="https://www.youtube.com/embed/${data.items[0].id.videoId}" frameborder="0" class="js-main-video-iframe" allowfullscreen></iframe>
     </div>
@@ -91,7 +97,7 @@ function updateMainVideoFromAnchorClick (videoObj) {
   $('.js-main-video').empty();
 
   // set template
-  const template = `
+  var template = `
     <div class="iframe-container">
       <iframe width="320" height="180" title="Featured Video" src="https://www.youtube.com/embed/${videoObj.items[0].id}" frameborder="0" class="js-main-video-iframe" allowfullscreen></iframe>
     </div>
@@ -115,7 +121,7 @@ function listenForPreviewClicks () {
       event.preventDefault();
 
       // get a tag info
-      const anchorClicked = $(event.target).closest('a');
+      var anchorClicked = $(event.target).closest('a');
 
       // call video api
       callYouTubeVideoAPI(anchorClicked[0].attributes.videoID.value, updateMainVideoFromAnchorClick);
@@ -148,7 +154,7 @@ function listLocalVideos (data) {
     data.items.map( (item, index) => {
 
       // setup li html with data
-      const template = `
+      var template = `
         <li>
           <a href="#" videoID="${item.id.videoId}" class="js-preview-btn" target="">
             <div class="thumb left-side">
@@ -193,7 +199,7 @@ function listNationalVideos (data) {
     data.items.map( (item, index) => {
 
       // setup li html with data
-      const template = `
+      var template = `
         <li>
           <a href="#" videoID="${item.id.videoId}" class="js-preview-btn">
             <div class="thumb left-side">
@@ -224,7 +230,7 @@ function listNationalVideos (data) {
 function callYouTubeSearchAPI (channelID, q, maxResults, callback) {
 
   // setup data
-  const qData = {
+  var qData = {
     part: 'snippet',
     key: 'AIzaSyBAPx_IKzkO0KLZ9TOGGcLTUixNZmFRiX4',
     channelId: channelID,
@@ -239,7 +245,7 @@ function callYouTubeSearchAPI (channelID, q, maxResults, callback) {
   }
 
   // set API call parameters
-  const settings = {
+  var settings = {
     url: 'https://www.googleapis.com/youtube/v3/search/',
     data: qData,
     dataType: 'json',
@@ -256,7 +262,7 @@ function callYouTubeSearchAPI (channelID, q, maxResults, callback) {
 function callYouTubeVideoAPI (videoID, callback) {
 
   // set API call parameters
-  const settings = {
+  var settings = {
     url: 'https://www.googleapis.com/youtube/v3/videos',
     data: {
       part: 'snippet,contentDetails,statistics',
