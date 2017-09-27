@@ -28,8 +28,6 @@ function loadAllDisasters (data) {
     $('.js-disaster-names').append(`<option value="${disaster[0]}">${disaster[1]}</option>`);
   });
 
-  fadeMainSelectMenu();
-
 }
 function loadDisaster (data) {
 
@@ -76,11 +74,6 @@ function loadDisasterImages (data) {
 
   startImageSlider();
 
-}
-
-function fadeMainSelectMenu () {
-  $('.js-disaster-names').addClass('bgAnimated');
-  $('.js-disaster-names').addClass('darkSelectMenu');
 }
 
 function listenForDisasterChange () {

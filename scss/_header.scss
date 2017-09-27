@@ -22,34 +22,6 @@
   margin-left:-30px;
 }
 
-@-webkit-keyframes fadeIt {
-  0%   {color:#000; background-color:#fff;}
-  50%  {color:#7f7f7f; background-color:#7f7f7f;}
-  100% {color:#fff; background-color:#000;}
-}
-@-moz-keyframes fadeIt {
-  0%   {color:#000; background-color:#fff;}
-  50%  {color:#7f7f7f; color:#7f7f7f; background-color:#7f7f7f;}
-  100% {color:#fff; background-color:#000;}
-}
-@-o-keyframes fadeIt {
-  0%   {color:#000; background-color:#fff;}
-  50%  {color:#7f7f7f; background-color:#7f7f7f;}
-  100% {color:#fff; background-color:#000;}
-}
-@keyframes fadeIt {
-  0%   {color:#000; background-color:#fff;}
-  50%  {color:#7f7f7f; background-color:#7f7f7f;}
-  100% {color:#fff; background-color:#000;}
-}
-.bgAnimated {
-  background-image:none !important;
-  -webkit-animation:fadeIt 5s ease-in-out;
-  -moz-animation:fadeIt 5s ease-in-out;
-  -o-animation:fadeIt 5s ease-in-out;
-  animation:fadeIt 5s ease-in-out;
-}
-
 /* tablets */
 @media only screen and (min-width:768px) {
 
